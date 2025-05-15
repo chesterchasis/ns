@@ -12,33 +12,42 @@
             --font-title: 'Playfair Display', serif;
             --font-body: 'Roboto', sans-serif;
 
-            --bg-light: #FFFFFF;
-            --text-light: #374151; 
-            --text-light-secondary: #6b7280; 
+            /* --- Colores Base --- */
+            --color-black: #000000;
+            --color-white: #FFFFFF;
+            --color-gray-light: #f9fafb; /* Gris muy claro para fondos de tarjeta en modo claro */
+            --color-gray-medium: #6b7280; /* Gris para texto secundario modo claro */
+            --color-gray-dark: #1f2937;   /* Gris oscuro para fondos de tarjeta en modo oscuro */
+            --color-gray-darker: #111827; /* Gris aún más oscuro para footer en modo oscuro */
+            --color-yellow-accent: #FFD700; /* Amarillo dorado para acentos */
+
+            /* --- Modo Claro --- */
+            --bg-light: var(--color-white);
+            --text-light: #374151; /* Gris oscuro para texto principal */
+            --text-light-secondary: var(--color-gray-medium);
+            --card-bg-light: var(--color-white); /* Tarjetas blancas */
             --card-border-light: #e5e7eb; 
-            --icon-bg-light: #000000; 
-            --icon-color-light: #FFFFFF; 
-            --accent-color: #4CAF50; 
-            --accent-color-dark: #45a049;
-            --accent-color-darker: #388E3C;
-            /* Degradados para tarjetas de características */
-            --feature-card-bg-light: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            --feature-card-bg-dark: linear-gradient(135deg, #4a5568 0%, #2c3e50 100%);
+            --icon-bg-light: var(--color-black); 
+            --icon-color-light: var(--color-white); 
+            --accent-color: var(--color-yellow-accent); /* Amarillo como acento principal */
             
-            --bg-dark: #1f2937; 
+            /* --- Modo Oscuro --- */
+            --bg-dark: var(--color-black); 
             --text-dark: #f3f4f6; 
             --text-dark-secondary: #9ca3af; 
-            --card-border-dark: #4b5563; 
-            --icon-bg-dark: #FFFFFF; 
-            --icon-color-dark: #000000; 
-            --footer-bg-dark: #111827; 
-            --login-form-bg-dark: #4b5563; 
-            --input-bg-dark: #374151; 
-            --input-border-dark: #6b7280; 
+            --card-bg-dark: var(--color-black); /* Tarjetas negras */
+            --card-border-dark: #2d3748; 
+            --icon-bg-dark: var(--color-white); 
+            --icon-color-dark: var(--color-black); 
+            --footer-bg-dark: #101010; 
+            --login-form-bg-dark: var(--color-gray-dark); 
+            --input-bg-dark: var(--color-gray-dark); 
+            --input-border-dark: #4a5568; 
 
+            /* Navbar */
             --navbar-bg-light: rgba(255, 255, 255, 0.9);
             --navbar-text-light: #1f2937;
-            --navbar-bg-dark: rgba(31, 41, 55, 0.9);
+            --navbar-bg-dark: rgba(0, 0, 0, 0.85); 
             --navbar-text-dark: #f3f4f6;
         }
 
@@ -73,73 +82,65 @@
             text-shadow: 0 1px 2px rgba(255, 255, 255, 0.05);
         }
         
-        #canvas-container,
-        .fog,
-        #leaves-container {
-            display: none !important; 
-        }
-
         .btn-primary {
             transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            background-color: #000000; 
-            color: #FFFFFF; 
+            background-color: var(--color-black); 
+            color: var(--color-white); 
+            border: 2px solid transparent;
         }
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); 
             background-color: #333333; 
+            border-color: var(--accent-color);
         }
         body.dark-mode .btn-primary {
-            background-color: #FFFFFF; 
-            color: #000000; 
+            background-color: var(--color-white); 
+            color: var(--color-black); 
         }
         body.dark-mode .btn-primary:hover {
             background-color: #e0e0e0; 
             box-shadow: 0 6px 10px rgba(255, 255, 255, 0.1);
-        }
-
-        .scale-up {
-            animation: scaleUp 0.5s ease forwards;
-        }
-        @keyframes scaleUp {
-            from { transform: scale(0.95); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-        .fade-in {
-            animation: fadeIn 1s ease forwards;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            border-color: var(--accent-color);
         }
 
         .login-form {
             backdrop-filter: blur(5px); 
             background: var(--card-bg-light); 
             border: 1px solid var(--card-border-light); 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         body.dark-mode .login-form {
             background: var(--login-form-bg-dark);
             border: 1px solid var(--input-border-dark);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
         }
         body.dark-mode .login-form h2,
         body.dark-mode .login-form label,
-        body.dark-mode .login-form a { 
+        body.dark-mode .login-form a:not(.text-accent) { 
             color: var(--text-dark);
         }
-         body.dark-mode .login-form a.text-accent {
+         body.dark-mode .login-form a.text-accent { /* Enlace "olvidaste contraseña" */
             color: var(--accent-color) !important; 
         }
+        .login-form .btn-primary { /* Botón Iniciar Sesión en Modal */
+             border: 2px solid transparent;
+        }
+        .login-form .btn-primary:hover {
+            border-color: var(--accent-color);
+        }
+
 
         .input-field {
             background-color: rgba(0,0,0,0.05); 
-            border-color: rgba(0,0,0,0.2);
+            border: 1px solid rgba(0,0,0,0.2);
             color: var(--text-light);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .input-field:focus {
             box-shadow: 0 0 0 2px var(--accent-color); 
-            border-color: var(--accent-color);
+            border-color: var(--accent-color) !important; /* Important para sobreescribir */
         }
         body.dark-mode .input-field {
             background-color: var(--input-bg-dark);
@@ -151,12 +152,21 @@
         }
         body.dark-mode .input-field:focus {
             box-shadow: 0 0 0 2px var(--accent-color); 
-            border-color: var(--accent-color);
+            border-color: var(--accent-color) !important;
+        }
+        /* Checkbox "Recuérdame" */
+        #remember-me {
+            color: var(--accent-color); /* Color del check */
+        }
+        #remember-me:focus {
+            ring-color: var(--accent-color); /* Color del anillo de foco */
         }
 
+
         .plant-card {
-            background-color: var(--bg-light);
+            background-color: var(--card-bg-light); /* Usar el fondo de tarjeta general */
             border: 1px solid var(--card-border-light); 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
         .plant-card:hover {
             transform: translateY(-10px) rotate(1deg); 
@@ -165,6 +175,7 @@
         body.dark-mode .plant-card {
             background-color: var(--card-bg-dark);
             border-color: var(--card-border-dark);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         body.dark-mode .plant-card h3 {
             color: var(--text-dark);
@@ -174,13 +185,14 @@
         }
         
         .text-accent { color: var(--accent-color) !important; }
-        .border-accent { border-color: var(--accent-color); }
+        .border-accent { border-color: var(--accent-color) !important; }
         
         .feature-card-bg {
-            background: var(--feature-card-bg-light); 
-            border: 1px solid var(--card-border-light);
+            background: var(--card-bg-light); /* Fondo blanco/negro */
+            border: 2px solid transparent; /* Borde inicial transparente */
             cursor: pointer; 
             transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.07); /* Sombra sutil base */
         }
         .feature-card-bg .icon-container {
             background-color: var(--icon-bg-light);
@@ -200,8 +212,9 @@
         }
 
         body.dark-mode .feature-card-bg {
-            background: var(--feature-card-bg-dark);
-            border-color: var(--card-border-dark);
+            background: var(--card-bg-dark);
+            border-color: transparent; /* Borde inicial transparente en modo oscuro */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Sombra sutil base modo oscuro */
         }
         body.dark-mode .feature-card-bg .icon-container {
             background-color: var(--icon-bg-dark);
@@ -216,22 +229,15 @@
             color: var(--text-dark-secondary); 
         }
 
-        .feature-card-bg:hover { 
+        .feature-card-bg:hover, .feature-card-bg.active-card { 
             transform: translateY(-8px) scale(1.03);
+            border-color: var(--accent-color) !important; /* Borde amarillo al hover/activo */
             box-shadow: 0 12px 24px rgba(0,0,0,0.15);
         }
-        .active-card {
-            border-color: var(--accent-color-darker) !important; 
-            box-shadow: 0 0 15px rgba(76, 175, 80, 0.3);
-            transform: translateY(-6px) scale(1.02); 
-        }
-        body.dark-mode .feature-card-bg:hover {
+        body.dark-mode .feature-card-bg:hover, body.dark-mode .feature-card-bg.active-card {
             box-shadow: 0 12px 24px rgba(0,0,0,0.3); 
         }
-        body.dark-mode .active-card {
-            box-shadow: 0 0 15px rgba(76, 175, 80, 0.5); 
-        }
-
+        
         .content-section {
             animation: fadeInContent 0.5s ease-out forwards;
             padding-top: 2rem; 
@@ -262,10 +268,12 @@
         .calendar-container {
             background-color: var(--card-bg-light);
             border: 1px solid var(--card-border-light);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.07);
         }
         body.dark-mode .calendar-container {
             background-color: var(--card-bg-dark);
             border-color: var(--card-border-dark);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
         }
         .calendar-header button {
             background-color: var(--icon-bg-light);
@@ -283,10 +291,11 @@
         }
         .calendar-day.current-day {
             background-color: var(--accent-color) !important;
-            color: white !important;
+            color: var(--color-black) !important; /* Texto negro para mejor contraste con amarillo */
         }
         body.dark-mode .calendar-day.current-day {
-            background-color: var(--accent-color-darker) !important;
+            background-color: var(--accent-color) !important;
+            color: var(--color-black) !important;
         }
         .calendar-day.other-month {
             color: var(--text-light-secondary);
@@ -333,15 +342,16 @@
             position: relative;
             padding-bottom: 0.25rem; 
         }
-        #navbar a.nav-link:hover::after,
-        #navbar a.nav-link.active-nav-link::after {
+        /* Subrayado amarillo para hover y activo, excepto para el logo */
+        #navbar a.nav-link:not(.navbar-brand-link):hover::after,
+        #navbar a.nav-link:not(.navbar-brand-link).active-nav-link::after {
             content: '';
             position: absolute;
             left: 0;
             bottom: 0;
             width: 100%;
             height: 2px;
-            background-color: var(--accent-color);
+            background-color: var(--accent-color); /* Amarillo */
         }
         #navbar #darkModeToggleNav {
             background-color: transparent;
@@ -370,8 +380,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex-shrink-0">
-                    <a href="#heroSection" data-target-id="heroSection" class="nav-link text-xl font-semibold hover:text-accent transition-colors flex items-center">
-                        <img src="URL_DE_TU_IMAGEN_AQUI" alt="Icono" class="h-8 w-8 mr-2 rounded-full object-cover"> Nuestro Espacio
+                    <a href="#heroSection" data-target-id="heroSection" class="nav-link navbar-brand-link text-xl font-semibold hover:text-accent transition-colors flex items-center">
+                        <img src="https://raw.githubusercontent.com/chesterchasis/ns/refs/heads/main/icono_1.png?token=GHSAT0AAAAAADDTN4R7LGP3UY6VAJFE3CWY2BGL7MA" alt="Icono" class="h-8 w-8 mr-2 rounded-full object-cover">Nuestro Espacio
                     </a>
                 </div>
                 <div class="hidden md:flex md:items-center md:space-x-1">
@@ -531,7 +541,7 @@
                 <h2 class="section-title text-5xl md:text-7xl mb-8 md:mb-12 text-center">Lista de Tareas</h2>
                 <div class="bg-white p-8 rounded-xl shadow-lg text-center">
                     <p class="text-gray-700 text-lg">Aquí se mostrará la lista de tareas compartidas.</p>
-                     <img src="https://placehold.co/600x400/E8F5E9/4CAF50?text=Lista+de+Tareas+Pr%C3%B3ximamente" alt="[Imagen de Marcador de posición de la lista de tareas]" class="mx-auto mt-6 rounded-lg">
+                     <img src="https://placehold.co/600x400/E8F5E9/FFD700?text=Lista+de+Tareas+Pr%C3%B3ximamente" alt="[Imagen de Marcador de posición de la lista de tareas]" class="mx-auto mt-6 rounded-lg">
                 </div>
             </section>
 
@@ -539,7 +549,7 @@
                 <h2 class="section-title text-5xl md:text-7xl mb-8 md:mb-12 text-center">Control de Gastos</h2>
                 <div class="bg-white p-8 rounded-xl shadow-lg text-center">
                     <p class="text-gray-700 text-lg">Aquí se mostrará la herramienta de control de gastos.</p>
-                     <img src="https://placehold.co/600x400/E8F5E9/4CAF50?text=Control+de+Gastos+Pr%C3%B3ximamente" alt="[Imagen de Marcador de posición del control de gastos]" class="mx-auto mt-6 rounded-lg">
+                     <img src="https://placehold.co/600x400/E8F5E9/FFD700?text=Control+de+Gastos+Pr%C3%B3ximamente" alt="[Imagen de Marcador de posición del control de gastos]" class="mx-auto mt-6 rounded-lg">
                 </div>
             </section>
         </div>
@@ -695,7 +705,7 @@
                         gsap.to(img, { scale: 1, duration: 0.3, ease: "power2.out" });
                     }
                     if (!card.classList.contains('active-card')) { 
-                         gsap.to(card, { y: 0, scale: 1, rotation: 0, boxShadow: body.classList.contains('dark-mode') ? "0 1px 3px rgba(0,0,0,0.2)" : "0 1px 3px rgba(0,0,0,0.05)", duration: 0.3, ease: "power2.out" });
+                         gsap.to(card, { y: 0, scale: 1, rotation: 0, boxShadow: body.classList.contains('dark-mode') ? "0 4px 8px rgba(0,0,0,0.3)" : "0 4px 8px rgba(0,0,0,0.07)", duration: 0.3, ease: "power2.out" });
                     }
                 });
             });
@@ -766,8 +776,12 @@
             };
             
             function setActiveUI(activeSectionId, activeCardId) {
-                // Actualizar enlaces de navegación
                 navLinks.forEach(link => {
+                    // El enlace "Nuestro Espacio" (logo/marca) no debe tener subrayado activo
+                    if (link.classList.contains('navbar-brand-link')) {
+                        link.classList.remove('active-nav-link');
+                        return;
+                    }
                     if (link.dataset.targetId === activeSectionId) {
                         link.classList.add('active-nav-link');
                     } else {
@@ -775,7 +789,6 @@
                     }
                 });
 
-                // Actualizar tarjetas de características
                 Object.entries(featureCards).forEach(([cardKey, cardElement]) => {
                     if (cardElement) {
                         if (cardElement.id === activeCardId) {
@@ -783,7 +796,7 @@
                             gsap.to(cardElement, { y: -6, scale: 1.02, duration: 0.2 });
                         } else {
                             cardElement.classList.remove('active-card');
-                            gsap.to(cardElement, { y: 0, scale: 1, rotation: 0, boxShadow: body.classList.contains('dark-mode') ? "0 1px 3px rgba(0,0,0,0.2)" : "0 1px 3px rgba(0,0,0,0.05)", duration: 0.1 });
+                            gsap.to(cardElement, { y: 0, scale: 1, rotation: 0, boxShadow: body.classList.contains('dark-mode') ? "0 4px 8px rgba(0,0,0,0.3)" : "0 4px 8px rgba(0,0,0,0.07)", duration: 0.1 });
                         }
                     }
                 });
@@ -846,8 +859,7 @@
                     ease: "sine.inOut"
                 });
             }
-            // Activar enlace "Inicio" por defecto
-             const initialActiveLink = document.querySelector('#navbar .nav-link[data-target-id="heroSection"]');
+             const initialActiveLink = document.querySelector('#navbar .nav-link[data-target-id="heroSection"]:not(.navbar-brand-link)');
             if(initialActiveLink) initialActiveLink.classList.add('active-nav-link');
 
         });
