@@ -913,7 +913,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 15h.01M12 15h.01M15 15h.01M9 18h.01M12 18h.01M15 18h.01" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2 text-center pointer-events-none">Control de Gastos</h3>
+                    <h3 class="text-xl font-semibold mb-2 text-center pointer-events-none">Gastos</h3>
                     <p class="text-sm text-center pointer-events-none">Lleva un registro detallado de tus finanzas.</p>
                 </div>
             </div>
@@ -932,7 +932,7 @@
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </button>
                     </div>
-                    <div class="calendar-weekdays grid grid-cols-7 gap-1 text-center font-medium text-xs sm:text-sm mb-2"> {/* CAMBIO: text-xs sm:text-sm */}
+                    <div class="calendar-weekdays grid grid-cols-7 gap-1 text-center font-medium text-xs sm:text-sm mb-2">
                         <div>Lun</div><div>Mar</div><div>Mié</div><div>Jue</div><div>Vie</div><div>Sáb</div><div>Dom</div>
                     </div>
                     <div id="calendarGrid" class="calendar-grid grid grid-cols-7 gap-1">
@@ -945,7 +945,7 @@
                 <div id="plantCardGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     <div class="plant-card overflow-hidden" 
                          data-plant-name="Monstera Deliciosa" 
-                         data-plant-image="https://images.unsplash.com/photo-1614594975525-e45190c55d0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                         data-plant-image="https://raw.githubusercontent.com/chesterchasis/ns/refs/heads/main/bosque_monstera.png"
                          data-plant-care="Requiere luz indirecta brillante y riego moderado, dejando secar la capa superior del sustrato entre riegos. Humedad ambiental alta es beneficiosa. Fertilizar durante la primavera y verano." 
                          data-watering-days="7" 
                          data-watering-progress="3">
@@ -953,7 +953,7 @@
                              alt="Planta Monstera Deliciosa con hojas grandes y verdes." 
                              class="w-full h-48 object-cover"
                              loading="lazy"
-                             onerror="this.onerror=null;this.src='https://placehold.co/500x300/e0e0e0/757575?text=Monstera';">
+                             onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/chesterchasis/ns/refs/heads/main/bosque_monstera.png';">
                         <div class="p-4">
                             <h3 class="font-semibold text-lg">Monstera</h3>
                             <p class="text-sm text-gray-600 dark:text-gray-400">Crecimiento y prosperidad</p>
@@ -964,7 +964,7 @@
                          data-plant-image="https://placehold.co/800x600/FF6347/FFFFFF?text=Tomate+Cherry" data-plant-care="Requiere pleno sol (6-8 horas diarias). Riego regular, manteniendo el sustrato húmedo pero no encharcado. Necesita tutores para crecer. Fertilizar cada 2-3 semanas." 
                          data-watering-days="2" 
                          data-watering-progress="1">
-                        <img src="https://placehold.co/500x300/FF6347/FFFFFF?text=Tomate+Cherry" 
+                        <img src="https://raw.githubusercontent.com/chesterchasis/ns/refs/heads/main/cherrys.jpg" 
                              alt="Planta de Tomate Cherry con frutos rojos." 
                              class="w-full h-48 object-cover"
                              loading="lazy"
@@ -1102,7 +1102,7 @@
             </section>
 
             <section id="expenseTrackerSection" class="content-section px-4 hidden">
-                <h2 class="section-title text-5xl md:text-7xl mb-8 md:mb-12 text-center">Control de Gastos</h2>
+                <h2 class="section-title text-5xl md:text-7xl mb-8 md:mb-12 text-center">Gastos</h2>
                 <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg text-center">
                     <p class="text-gray-700 dark:text-gray-300 text-lg">Aquí se mostrará la herramienta de control de gastos.</p>
                      <img src="https://placehold.co/600x400/E8F5E9/FFD700?text=Control+de+Gastos+Pr%C3%B3ximamente" alt="Marcador de posición para la herramienta de control de gastos" class="mx-auto mt-6 rounded-lg">
@@ -1154,7 +1154,6 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                     <h2 class="text-2xl font-semibold">Nuestro Espacio</h2>
                     <p class="mt-2 text-gray-600 dark:text-gray-400">Cultivando amor y organización juntos</p>
                 </div>
                 
@@ -1203,7 +1202,7 @@
             'TD', 'TD', 'L', 'L'
         ]; 
 
-        const emojiOptions = ['❤️', '🎉', '💼', '✈️', '🍽️', '💡', '🎁', '😴', '😊', '🤔'];
+        const emojiOptions = ['❤️', '🎉', '💼', '✈️', '🇸🇰', '💡', '🇪🇸', '😴', '🏨', '🤔'];
         let currentEmojiSlotTarget = null; 
 
         const berlinHolidays2025 = [
