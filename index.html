@@ -15,27 +15,32 @@
             /* --- Colores Base --- */
             --color-black: #000000;
             --color-white: #FFFFFF;
-            --color-gray-light: #f9fafb; /* Gris muy claro para fondos de tarjeta en modo claro */
-            --color-gray-medium: #6b7280; /* Gris para texto secundario modo claro */
-            --color-gray-dark: #1f2937;   /* Gris oscuro para fondos de tarjeta en modo oscuro */
-            --color-gray-darker: #111827; /* Gris aún más oscuro para footer en modo oscuro */
-            --color-yellow-accent: #FFD700; /* Amarillo dorado para acentos */
+            --color-gray-light: #f9fafb; 
+            --color-gray-medium: #6b7280; 
+            --color-gray-dark: #1f2937;  
+            --color-gray-darker: #111827; 
+            --color-yellow-accent: #FFD700; 
+            --color-holiday-light: #e6fffa; 
+            --color-holiday-dark: #2C5E55;  
+            --color-weekend-light: #fffbeb; 
+            --color-weekend-dark: #232a3b;  
+
 
             /* --- Modo Claro --- */
             --bg-light: var(--color-white);
-            --text-light: #374151; /* Gris oscuro para texto principal */
+            --text-light: #374151; 
             --text-light-secondary: var(--color-gray-medium);
-            --card-bg-light: var(--color-white); /* Tarjetas blancas */
+            --card-bg-light: var(--color-white); 
             --card-border-light: #e5e7eb; 
             --icon-bg-light: var(--color-black); 
             --icon-color-light: var(--color-white); 
-            --accent-color: var(--color-yellow-accent); /* Amarillo como acento principal */
+            --accent-color: var(--color-yellow-accent); 
             
             /* --- Modo Oscuro --- */
             --bg-dark: var(--color-black); 
             --text-dark: #f3f4f6; 
             --text-dark-secondary: #9ca3af; 
-            --card-bg-dark: var(--color-black); /* Tarjetas negras */
+            --card-bg-dark: var(--color-black); 
             --card-border-dark: #2d3748; 
             --icon-bg-dark: var(--color-white); 
             --icon-color-dark: var(--color-black); 
@@ -59,7 +64,7 @@
             font-family: var(--font-body);
             background-color: var(--bg-light); 
             color: var(--text-light); 
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.5s ease, color 0.5s ease;
             padding-top: 4rem; 
         }
         body.dark-mode {
@@ -68,14 +73,14 @@
         }
 
         h2, h3, h4, h5, h6, p, button, a, span, label, input, select, textarea, div:not(h1.main-title) {
-            font-family: var(--font-body);
-        }
+            font-family: var(--font-body); }
         
         h1.main-title { 
             font-family: var(--font-title); 
             color: var(--text-light); 
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
             font-weight: normal; 
+            line-height: 1.1; 
         }
         body.dark-mode h1.main-title {
             color: var(--text-dark);
@@ -83,7 +88,7 @@
         }
         
         .btn-primary {
-            transition: all 0.3s ease;
+            transition: all 0.5s ease; 
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             background-color: var(--color-black); 
             color: var(--color-white); 
@@ -110,6 +115,7 @@
             background: var(--card-bg-light); 
             border: 1px solid var(--card-border-light); 
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 1.5rem; 
         }
         body.dark-mode .login-form {
             background: var(--login-form-bg-dark);
@@ -121,26 +127,26 @@
         body.dark-mode .login-form a:not(.text-accent) { 
             color: var(--text-dark);
         }
-         body.dark-mode .login-form a.text-accent { /* Enlace "olvidaste contraseña" */
+         body.dark-mode .login-form a.text-accent { 
             color: var(--accent-color) !important; 
         }
-        .login-form .btn-primary { /* Botón Iniciar Sesión en Modal */
+        .login-form .btn-primary { 
              border: 2px solid transparent;
         }
         .login-form .btn-primary:hover {
             border-color: var(--accent-color);
         }
 
-
         .input-field {
             background-color: rgba(0,0,0,0.05); 
             border: 1px solid rgba(0,0,0,0.2);
             color: var(--text-light);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: border-color 0.5s ease, box-shadow 0.5s ease;
+            border-radius: 0.75rem; 
         }
         .input-field:focus {
             box-shadow: 0 0 0 2px var(--accent-color); 
-            border-color: var(--accent-color) !important; /* Important para sobreescribir */
+            border-color: var(--accent-color) !important; 
         }
         body.dark-mode .input-field {
             background-color: var(--input-bg-dark);
@@ -154,23 +160,20 @@
             box-shadow: 0 0 0 2px var(--accent-color); 
             border-color: var(--accent-color) !important;
         }
-        /* Checkbox "Recuérdame" */
         #remember-me {
-            color: var(--accent-color); /* Color del check */
+            color: var(--accent-color); 
+            border-radius: 0.25rem; 
         }
         #remember-me:focus {
-            ring-color: var(--accent-color); /* Color del anillo de foco */
+            ring-color: var(--accent-color); 
         }
-
 
         .plant-card {
-            background-color: var(--card-bg-light); /* Usar el fondo de tarjeta general */
+            background-color: var(--card-bg-light); 
             border: 1px solid var(--card-border-light); 
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        .plant-card:hover {
-            transform: translateY(-10px) rotate(1deg); 
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); 
+            cursor: pointer;
+            border-radius: 1rem; 
         }
         body.dark-mode .plant-card {
             background-color: var(--card-bg-dark);
@@ -188,19 +191,24 @@
         .border-accent { border-color: var(--accent-color) !important; }
         
         .feature-card-bg {
-            background: var(--card-bg-light); /* Fondo blanco/negro */
-            border: 2px solid transparent; /* Borde inicial transparente */
+            background: var(--card-bg-light); 
+            border: 2px solid transparent; 
             cursor: pointer; 
-            transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.07); /* Sombra sutil base */
+            transition: border-color 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.07); 
+            border-radius: 1rem; 
         }
         .feature-card-bg .icon-container {
             background-color: var(--icon-bg-light);
-            transition: background-color 0.3s ease;
+            transition: background-color 0.5s ease, transform 0.5s ease;
+            border-radius: 9999px; 
+        }
+        .feature-card-bg:hover .icon-container {
+            transform: scale(1.1) rotate(5deg);
         }
         .feature-card-bg .icon-container svg {
             color: var(--icon-color-light) !important;
-            transition: color 0.3s ease;
+            transition: color 0.5s ease;
         }
         .feature-card-bg h3 {
             color: var(--text-light); 
@@ -213,8 +221,8 @@
 
         body.dark-mode .feature-card-bg {
             background: var(--card-bg-dark);
-            border-color: transparent; /* Borde inicial transparente en modo oscuro */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Sombra sutil base modo oscuro */
+            border-color: transparent; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3); 
         }
         body.dark-mode .feature-card-bg .icon-container {
             background-color: var(--icon-bg-dark);
@@ -228,20 +236,12 @@
         body.dark-mode .feature-card-bg p {
             color: var(--text-dark-secondary); 
         }
-
-        .feature-card-bg:hover, .feature-card-bg.active-card { 
-            transform: translateY(-8px) scale(1.03);
-            border-color: var(--accent-color) !important; /* Borde amarillo al hover/activo */
-            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
-        }
-        body.dark-mode .feature-card-bg:hover, body.dark-mode .feature-card-bg.active-card {
-            box-shadow: 0 12px 24px rgba(0,0,0,0.3); 
-        }
         
         .content-section {
-            animation: fadeInContent 0.5s ease-out forwards;
-            padding-top: 2rem; 
-            margin-top: -2rem; 
+            animation: fadeInContent 1s ease-out forwards;
+            padding-top: 4rem; 
+            padding-bottom: 6rem; 
+            margin-top: 0; 
         }
         @keyframes fadeInContent {
             from { opacity: 0; transform: translateY(20px); }
@@ -257,6 +257,7 @@
         body.dark-mode .content-section .bg-white { 
             background-color: var(--card-bg-dark);
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            border-radius: 0.75rem; 
         }
         body.dark-mode .content-section p {
             color: var(--text-dark-secondary);
@@ -269,6 +270,7 @@
             background-color: var(--card-bg-light);
             border: 1px solid var(--card-border-light);
             box-shadow: 0 4px 8px rgba(0,0,0,0.07);
+            border-radius: 0.75rem; 
         }
         body.dark-mode .calendar-container {
             background-color: var(--card-bg-dark);
@@ -278,36 +280,391 @@
         .calendar-header button {
             background-color: var(--icon-bg-light);
             color: var(--icon-color-light);
+            border-radius: 9999px; 
         }
         body.dark-mode .calendar-header button {
             background-color: var(--icon-bg-dark);
             color: var(--icon-color-dark);
         }
-        .calendar-grid div {
+        .calendar-grid div.calendar-day-cell { 
             border: 1px solid var(--card-border-light);
+            aspect-ratio: 1 / 1; 
+            display: flex;
+            flex-direction: column; 
+            justify-content: flex-start; 
+            align-items: stretch; 
+            position: relative; 
+            /* padding: 0.125rem; No padding here, handled by Tailwind on JS or internal elements */
+            min-height: 6rem; /* Base min-height, aspect-ratio will primarily define height */
+            transition: background-color 0.2s;
+            border-radius: 0.375rem; 
         }
-        body.dark-mode .calendar-grid div {
+        body.dark-mode .calendar-grid div.calendar-day-cell {
             border: 1px solid var(--card-border-dark);
         }
-        .calendar-day.current-day {
-            background-color: var(--accent-color) !important;
-            color: var(--color-black) !important; /* Texto negro para mejor contraste con amarillo */
+
+        .calendar-day .day-header-info { 
+            display: flex;
+            justify-content: space-between; 
+            align-items: flex-start; 
+            width: 100%;
+            padding: 0.125rem; 
         }
-        body.dark-mode .calendar-day.current-day {
-            background-color: var(--accent-color) !important;
-            color: var(--color-black) !important;
+        .calendar-day .day-number {
+            font-size: 0.625rem; /* 10px */
+            font-weight: 500;
+            order: 2; 
         }
-        .calendar-day.other-month {
+        @media (min-width: 640px) { /* sm: */
+            .calendar-day .day-number {
+                font-size: 0.75rem; /* 12px */
+            }
+        }
+        .calendar-day .note-indicator {
+            width: 0.375rem; 
+            height: 0.375rem; 
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            opacity: 0; 
+            transition: opacity 0.2s;
+            margin-top: 0.2rem; 
+            order: 1; 
+        }
+        .calendar-day .note-indicator.has-note {
+            opacity: 1;
+        }
+
+        .calendar-day .day-emojis-container {
+            display: flex;
+            justify-content: space-around; 
+            font-size: 0.7rem; /* Base size for emojis */
+            margin-bottom: 0.25rem; 
+            min-height: 1.1rem; /* Adjusted min-height */
+        }
+         @media (min-width: 640px) { /* sm: */
+            .calendar-day .day-emojis-container {
+                font-size: 0.75rem; /* Original size for sm and up */
+                min-height: 1.25rem;
+            }
+        }
+
+        .calendar-day .emoji-slot { 
+            width: 1.25rem; /* Base width for emoji slot */
+            text-align: center;
+            cursor: pointer; 
+            padding: 0.1rem; /* Base padding */
+            border-radius: 0.25rem;
+            user-select: none; 
+        }
+        @media (min-width: 640px) { /* sm: */
+            .calendar-day .emoji-slot {
+                width: 1.5rem; /* Original width for sm and up */
+                padding: 0.125rem; /* Original padding */
+            }
+        }
+        .calendar-day .emoji-slot:hover {
+            background-color: rgba(0,0,0,0.05);
+        }
+        body.dark-mode .calendar-day .emoji-slot:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+
+        .calendar-day .day-notes-container {
+            flex-grow: 1; 
+            overflow-y: auto; 
+            max-height: calc(100% - 2.5rem); /* Adjusted based on potentially smaller header/emojis */
+        }
+        .calendar-day .note-entry {
+            font-size: 0.55rem; /* Slightly smaller base font for notes */
+            line-height: 1.2; 
+            color: var(--text-light-secondary);
+            text-align: left;
+            word-break: break-word; 
+            padding: 0.15rem; /* Reduced padding */
+            border: 1px dashed transparent; 
+            outline: none; 
+            border-radius: 0.25rem;
+            transition: border-color 0.2s, background-color 0.2s;
+            min-height: 1rem; /* Reduced min-height */
+            margin-bottom: 0.15rem; /* Reduced margin */
+        }
+         @media (min-width: 640px) { /* sm: */
+            .calendar-day .note-entry {
+                font-size: 0.6rem; /* Original font size */
+                padding: 0.2rem; /* Original padding */
+                min-height: 1.25rem; /* Original min-height */
+                margin-bottom: 0.25rem; /* Original margin */
+            }
+        }
+        .calendar-day .note-entry:last-child {
+            margin-bottom: 0;
+        }
+        .calendar-day .note-entry.placeholder-note::before {
+            content: "Añadir nota...";
             color: var(--text-light-secondary);
             opacity: 0.6;
+            font-style: italic;
+            pointer-events: none; 
+        }
+        body.dark-mode .calendar-day .note-entry.placeholder-note::before {
+            color: var(--text-dark-secondary);
+        }
+        .calendar-day .note-entry:focus,
+        .calendar-day .note-entry:hover {
+            border-color: var(--accent-color); 
+            background-color: rgba(0,0,0,0.02);
+        }
+        body.dark-mode .calendar-day .note-entry:focus,
+        body.dark-mode .calendar-day .note-entry:hover {
+            background-color: rgba(255,255,255,0.05); 
+        }
+        .calendar-day.current-day .note-entry {
+            color: var(--color-black) !important; 
+            opacity: 0.9;
+        }
+        .calendar-day.current-day .note-entry.placeholder-note::before {
+            color: var(--color-black);
+            opacity: 0.5;
+        }
+        .calendar-day.current-day .note-indicator {
+             background-color: var(--color-black); 
+        }
+
+
+        .calendar-day.weekend-light {
+            background-color: var(--color-weekend-light) !important;
+        }
+        .calendar-day.weekend-dark {
+            background-color: var(--color-weekend-dark) !important;
+        }
+        .calendar-day.holiday-berlin-light {
+            background-color: var(--color-holiday-light) !important; 
+        }
+        .calendar-day.holiday-berlin-dark {
+            background-color: var(--color-holiday-dark) !important; 
+        }
+        .calendar-day.current-day {
+            background-color: var(--accent-color) !important; 
+            color: var(--color-black) !important; 
+            font-weight: bold;
+        }
+        .calendar-day.current-day .day-number { 
+             color: var(--color-black) !important;
+        }
+
+        .calendar-day.other-month {
+            color: var(--text-light-secondary);
+            opacity: 0.5;
         }
         body.dark-mode .calendar-day.other-month {
             color: var(--text-dark-secondary);
         }
+        .calendar-day.other-month .note-entry,
+        .calendar-day.other-month .note-indicator,
+        .calendar-day.other-month .day-emojis-container,
+        .calendar-day.other-month .emoji-slot {
+            pointer-events: none; 
+            opacity: 0.3;
+        }
+        .calendar-day.other-month .note-entry.placeholder-note::before {
+            content: ""; 
+        }
+
+        #emojiPalette {
+            position: absolute;
+            background-color: var(--card-bg-light);
+            border: 1px solid var(--card-border-light);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            display: grid; 
+            grid-template-columns: repeat(5, 1fr); 
+            gap: 0.25rem; 
+            z-index: 1000; 
+            width: auto; 
+            min-width: 120px; 
+        }
+        body.dark-mode #emojiPalette {
+            background-color: var(--card-bg-dark);
+            border-color: var(--card-border-dark);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+        #emojiPalette .palette-emoji {
+            cursor: pointer;
+            font-size: 1.1rem; 
+            text-align: center;
+            padding: 0.125rem; 
+            border-radius: 0.25rem;
+        }
+        #emojiPalette .palette-emoji:hover {
+            background-color: rgba(0,0,0,0.1);
+        }
+        body.dark-mode #emojiPalette .palette-emoji:hover {
+            background-color: rgba(255,255,255,0.15);
+        }
+        #emojiPaletteCloseBtn {
+            grid-column: span 5; 
+            text-align: center;
+            padding: 0.25rem;
+            margin-top: 0.25rem;
+            font-size: 0.9rem;
+            background-color: var(--color-gray-light);
+            color: var(--text-light);
+            border: 1px solid var(--card-border-light);
+            border-radius: 0.25rem;
+            cursor: pointer;
+        }
+        body.dark-mode #emojiPaletteCloseBtn {
+            background-color: var(--color-gray-dark);
+            color: var(--text-dark);
+            border-color: var(--card-border-dark);
+        }
+        #emojiPaletteCloseBtn:hover {
+             opacity: 0.8;
+        }
+        #emojiPalette.initially-hidden {
+            display: none;
+        }
+
+
+        .todo-container {
+            background-color: var(--card-bg-light);
+            border: 1px solid var(--card-border-light);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            border-radius: 0.75rem; 
+        }
+        body.dark-mode .todo-container {
+            background-color: var(--card-bg-dark); 
+            border-color: var(--card-border-dark);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+        }
+        #newTaskInput {
+             border-radius: 9999px 0 0 9999px; 
+        }
+        #addTaskBtn {
+            border-radius: 0 9999px 9999px 0; 
+        }
+        #addTaskBtn svg {
+            margin-right: 0.5rem;
+        }
+        #taskList li {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem; 
+            border-bottom: 1px solid var(--card-border-light);
+            background-color: var(--color-gray-light); 
+            border-radius: 0.375rem; 
+            margin-bottom: 0.5rem; 
+            transition: background-color 0.2s;
+        }
+        #taskList li:hover {
+            background-color: #f0f0f0; 
+        }
+        body.dark-mode #taskList li {
+            border-bottom-color: var(--card-border-dark);
+            background-color: #2d3748; 
+        }
+        body.dark-mode #taskList li:hover {
+            background-color: #374151;
+        }
+        #taskList li:last-child {
+            border-bottom: none;
+        }
+        #taskList input[type="checkbox"] {
+            margin-right: 0.75rem;
+            accent-color: var(--accent-color); 
+            width: 1.25rem; 
+            height: 1.25rem;
+            cursor: pointer;
+            flex-shrink: 0; 
+            border-radius: 0.25rem; 
+        }
+        #taskList .task-item-content {
+            flex-grow: 1;
+        }
+        #taskList label {
+            cursor: pointer;
+            font-size: 0.95rem; 
+        }
+        #taskList label.completed {
+            text-decoration: line-through;
+            color: var(--text-light-secondary);
+            opacity: 0.7;
+        }
+        body.dark-mode #taskList label.completed {
+            color: var(--text-dark-secondary);
+        }
+        #taskList .task-date {
+            font-size: 0.7rem; 
+            color: var(--text-light-secondary);
+            margin-top: 0.125rem; 
+        }
+        body.dark-mode #taskList .task-date {
+            color: var(--text-dark-secondary);
+        }
+
+
+        #taskList .delete-task {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: #f87171; 
+            cursor: pointer;
+            padding: 0.375rem;
+            border-radius: 9999px; 
+            transition: background-color 0.2s, color 0.2s;
+        }
+        #taskList .delete-task:hover {
+            color: var(--color-white);
+            background-color: #ef4444; 
+        }
+        body.dark-mode #taskList .delete-task {
+            color: #fca5a5; 
+        }
+        body.dark-mode #taskList .delete-task:hover {
+            background-color: #dc2626;
+            color: var(--color-white);
+        }
+        
+        #plantDetailView .plant-info-container {
+            background-color: rgba(255, 255, 255, 0.7); 
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 1.5rem; 
+            border-radius: 1rem; 
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); 
+        }
+        body.dark-mode #plantDetailView .plant-info-container {
+            background-color: rgba(31, 41, 55, 0.7); 
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3), 0 4px 6px -2px rgba(0,0,0,0.2); 
+        }
+         #plantDetailView .plant-info-container ul {
+            list-style-position: inside;
+        }
+
+        #plantDetailView .watering-progress-bg {
+            background-color: var(--card-border-light);
+            border-radius: 9999px; 
+            height: 2rem; 
+        }
+        body.dark-mode #plantDetailView .watering-progress-bg {
+            background-color: var(--card-border-dark);
+        }
+        #plantDetailView .watering-progress {
+            background-color: var(--accent-color);
+            border-radius: 9999px; 
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+            height: 100%; 
+            transition: width 0.5s ease-in-out;
+        }
+
 
         footer {
             background-color: var(--card-bg-light); 
-            transition: background-color 0.3s ease;
+            transition: background-color 0.5s ease;
         }
         body.dark-mode footer {
             background-color: var(--footer-bg-dark);
@@ -333,6 +690,7 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             color: var(--navbar-text-light);
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
         body.dark-mode #navbar {
             background-color: var(--navbar-bg-dark);
@@ -342,7 +700,6 @@
             position: relative;
             padding-bottom: 0.25rem; 
         }
-        /* Subrayado amarillo para hover y activo, excepto para el logo */
         #navbar a.nav-link:not(.navbar-brand-link):hover::after,
         #navbar a.nav-link:not(.navbar-brand-link).active-nav-link::after {
             content: '';
@@ -351,12 +708,14 @@
             bottom: 0;
             width: 100%;
             height: 2px;
-            background-color: var(--accent-color); /* Amarillo */
+            background-color: var(--accent-color); 
+            transition: width 0.3s ease; 
         }
         #navbar #darkModeToggleNav {
             background-color: transparent;
             color: var(--navbar-text-light);
             border: none;
+            border-radius: 9999px; 
         }
         body.dark-mode #navbar #darkModeToggleNav {
             color: var(--navbar-text-dark);
@@ -364,12 +723,102 @@
         #navbar #darkModeToggleNav svg {
             width: 1.25rem; height: 1.25rem;
         }
+
         #heroSection {
             min-height: calc(100vh - 4rem); 
+            display: flex; 
+            padding-bottom: 6rem; 
+            position: relative; 
+            background-size: cover;
+            background-position: center;
+            border-radius: 1rem; 
+            overflow: hidden; 
+        }
+
+        #heroSection::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1; 
+            background-image: url('https://raw.githubusercontent.com/chesterchasis/ns/refs/heads/main/9B262D7E-9298-421D-8135-21A4131C0798.jpeg'); 
+            background-size: cover;
+            background-position: 80% center; 
+        }
+
+        #heroSection::after { 
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2; 
+            background: linear-gradient(to right, var(--bg-light) 15%, transparent 40%);
+            transition: background 0.5s ease;
+        }
+
+        body.dark-mode #heroSection::after {
+             background: linear-gradient(to right, var(--bg-dark) 15%, transparent 40%);
+        }
+
+        #heroSection .hero-content {
+            position: relative;
+            z-index: 3; 
+            width: 100%;
+            max-width: 4xl; 
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem; 
+            padding-right: 1rem;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            align-items: flex-start; 
+            justify-content: center; 
+            min-height: calc(100vh - 4rem - 6rem); 
+        }
+         /* Estilo específico para el párrafo en la sección hero */
+         #heroSection .hero-content p {
+            font-size: 0.875rem; 
+            line-height: 1.5; 
+            margin-bottom: 1rem; 
+            color: var(--text-light); /* Color por defecto (modo claro) */
+        }
+        /* Estilo para el párrafo en modo oscuro */
+        body.dark-mode #heroSection .hero-content p {
+            color: var(--text-dark); /* Usar la variable de texto del modo oscuro */
+        }
+        @media (min-width: 768px) { /* md: */
+            #heroSection .hero-content p {
+                font-size: 1rem; /* text-sm */
+            }
+        }
+
+        #featuresSection {
+             padding-top: 6rem; 
+        }
+        footer .flex.space-x-6 {
+            margin-top: 0.25rem; 
+        }
+        footer .border-t {
+            margin-top: 1.5rem; 
+            padding-top: 1.5rem; 
+        }
+
+        #loginModal.opacity-0 {
+            opacity: 0;
+        }
+        #loginModal {
+            transition: opacity 0.5s ease-in-out;
+        }
+        .login-form.scale-up { 
+            animation: scaleUpModal 0.5s ease-out forwards;
+        }
+        @keyframes scaleUpModal {
+            from { transform: scale(0.95); opacity: 0.8; }
+            to { transform: scale(1); opacity: 1; }
         }
 
     </style>
@@ -380,23 +829,23 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex-shrink-0">
-                    <a href="#heroSection" data-target-id="heroSection" class="nav-link navbar-brand-link text-xl font-semibold hover:text-accent transition-colors flex items-center">
-                        <img src="https://raw.githubusercontent.com/chesterchasis/ns/refs/heads/main/icono_1.png?token=GHSAT0AAAAAADDTN4R7LGP3UY6VAJFE3CWY2BGL7MA" alt="Icono" class="h-8 w-8 mr-2 rounded-full object-cover">Nuestro Espacio
+                    <a href="#heroSection" data-target-id="heroSection" class="nav-link navbar-brand-link text-xl font-semibold hover:text-accent transition-colors flex items-center"> 
+                        <img src="https://raw.githubusercontent.com/chesterchasis/ns/main/icono_1.png" alt="Icono de la aplicación Nuestro Espacio" class="h-8 w-8 mr-2 rounded-full object-cover">Nuestro Espacio
                     </a>
                 </div>
                 <div class="hidden md:flex md:items-center md:space-x-1">
                     <a href="#heroSection" data-target-id="heroSection" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Inicio</a>
                     <a href="#calendarSection" data-target-id="calendarSection" data-card-id="calendarCard" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Calendario</a>
-                    <a href="#plantGallerySection" data-target-id="plantGallerySection" data-card-id="gardenCard" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Jardín</a>
-                    <a href="#todoSection" data-target-id="todoSection" data-card-id="tasksCard" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Tareas</a>
+                    <a href="#gardenSection" data-target-id="gardenSection" data-card-id="gardenCard" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Jardín</a>
+                    <a href="#tasksSection" data-target-id="tasksSection" data-card-id="tasksCard" class="nav-link px-3 py-2 rounded-md text-sm font-medium">To Do List</a>
                     <a href="#expenseTrackerSection" data-target-id="expenseTrackerSection" data-card-id="expensesCard" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Gastos</a>
                 </div>
                 <div class="flex items-center">
                     <button id="darkModeToggleNav" aria-label="Cambiar modo oscuro/claro" class="p-2 rounded-full">
-                        <svg id="sunIconNav" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg id="sunIconNav" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 w-5">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                         </svg>
-                        <svg id="moonIconNav" xmlns="http://www.w3.org/2000/svg" class="hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg id="moonIconNav" xmlns="http://www.w3.org/2000/svg" class="hidden h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                         </svg>
                     </button>
@@ -406,35 +855,35 @@
     </nav>
 
     <div id="mainContentContainer" class="relative z-10 flex flex-col items-center px-4">
-        <section id="heroSection" class="text-center max-w-4xl mx-auto scale-up w-full py-12 md:py-0">
-            <h1 class="main-title text-6xl md:text-8xl mb-6 fade-in">
-                Nuestro Espacio
-            </h1>
-            <p class="text-lg md:text-xl mb-10 fade-in text-gray-600 dark:text-gray-400" style="animation-delay: 0.3s;">
-                Un lugar para cultivar nuestro amor, organizar nuestros días y ver crecer nuestra vida juntos
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in" style="animation-delay: 0.6s;">
-                <button id="loginBtn" class="btn-primary font-semibold py-3 px-6 md:py-4 md:px-8 rounded-full text-base md:text-lg transition-all duration-300 transform hover:scale-105">
-                    Iniciar Sesión
-                </button>
+        <section id="heroSection" class="w-full relative rounded-2xl overflow-hidden">
+            <div class="hero-content text-left"> 
+                <h1 class="main-title text-6xl md:text-8xl mb-3 fade-in"> Nuestro<br>Espacio
+                </h1>
+                <p class="text-xs md:text-sm mb-6 fade-in max-w-2xl" style="animation-delay: 0.3s;"> Un lugar para cultivar nuestro amor,<br>organizar nuestros días y ver crecer<br>nuestra vida juntos
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 fade-in" style="animation-delay: 0.6s;">
+                    <button id="loginBtn" class="btn-primary font-semibold py-3 px-6 md:py-4 md:px-8 rounded-full text-base md:text-lg transition-all duration-300 transform hover:scale-105">
+                        Iniciar Sesión
+                    </button>
+                </div>
             </div>
         </section>
         
         <section id="featuresSection" class="w-full max-w-7xl mx-auto py-16 md:py-24">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 fade-in" style="animation-delay: 1s;">
-                <div id="calendarCard" class="feature-card-bg p-6 rounded-2xl">
-                    <div class="icon-container w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto pointer-events-none">
+                <div id="calendarCard" class="feature-card-bg p-6">
+                    <div class="icon-container w-16 h-16 flex items-center justify-center mb-4 mx-auto">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2 text-center pointer-events-none">Calendario Compartido</h3>
+                    <h3 class="text-xl font-semibold mb-2 text-center pointer-events-none">Calendario</h3>
                     <p class="text-sm text-center pointer-events-none">Mantengan sus vidas sincronizadas.</p>
                 </div>
                 
-                <div id="gardenCard" class="feature-card-bg p-6 rounded-2xl">
-                    <div class="icon-container w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto pointer-events-none">
+                <div id="gardenCard" class="feature-card-bg p-6">
+                    <div class="icon-container w-16 h-16 flex items-center justify-center mb-4 mx-auto">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                            <path d="M12 10a6 6 0 0 0 -6 -6h-3v2a6 6 0 0 0 6 6h3" />
@@ -442,22 +891,22 @@
                            <path d="M12 20l0 -10" />
                          </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2 text-center pointer-events-none">Jardín Botánico</h3>
+                    <h3 class="text-xl font-semibold mb-2 text-center pointer-events-none">Jardín</h3>
                     <p class="text-sm text-center pointer-events-none">Cultiven juntos un jardín virtual.</p>
                 </div>
                 
-                <div id="tasksCard" class="feature-card-bg p-6 rounded-2xl">
-                    <div class="icon-container w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto pointer-events-none">
+                <div id="tasksCard" class="feature-card-bg p-6">
+                    <div class="icon-container w-16 h-16 flex items-center justify-center mb-4 mx-auto">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2 text-center pointer-events-none">Lista de Tareas</h3>
+                    <h3 class="text-xl font-semibold mb-2 text-center pointer-events-none">To Do List</h3>
                     <p class="text-sm text-center pointer-events-none">Organícense como equipo.</p>
                 </div>
 
-                <div id="expensesCard" class="feature-card-bg p-6 rounded-2xl">
-                    <div class="icon-container w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto pointer-events-none">
+                <div id="expensesCard" class="feature-card-bg p-6">
+                    <div class="icon-container w-16 h-16 flex items-center justify-center mb-4 mx-auto">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-2m-3 2v-6m2-4h2a2 2 0 012 2v10a2 2 0 01-2 2H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2h-2M9 12h6M15 12H9" />
                             <rect x="5" y="3" width="14" height="18" rx="2" ry="2" stroke="none" />
@@ -472,92 +921,198 @@
 
         <div id="dynamicContentContainer" class="w-full max-w-7xl mx-auto">
             <section id="calendarSection" class="content-section px-4 hidden">
-                <h2 class="section-title text-5xl md:text-7xl mb-8 md:mb-12 text-center">Calendario Compartido</h2>
-                <div class="calendar-container p-4 sm:p-6 md:p-8 rounded-xl shadow-lg">
+                <h2 class="section-title text-5xl md:text-7xl mb-8 md:mb-12 text-center">Calendario</h2>
+                <div class="calendar-container p-4 sm:p-6 md:p-8">
                     <div class="calendar-header flex justify-between items-center mb-4">
-                        <button id="prevMonthBtn" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                        <button id="prevMonthBtn" class="p-2 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors rounded-full">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                         </button>
                         <h3 id="monthYearDisplay" class="text-xl md:text-2xl font-semibold"></h3>
-                        <button id="nextMonthBtn" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                        <button id="nextMonthBtn" class="p-2 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors rounded-full">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </button>
                     </div>
-                    <div class="calendar-weekdays grid grid-cols-7 gap-1 text-center font-medium text-sm mb-2">
-                        <div>Dom</div><div>Lun</div><div>Mar</div><div>Mié</div><div>Jue</div><div>Vie</div><div>Sáb</div>
+                    <div class="calendar-weekdays grid grid-cols-7 gap-1 text-center font-medium text-xs sm:text-sm mb-2"> {/* CAMBIO: text-xs sm:text-sm */}
+                        <div>Lun</div><div>Mar</div><div>Mié</div><div>Jue</div><div>Vie</div><div>Sáb</div><div>Dom</div>
                     </div>
                     <div id="calendarGrid" class="calendar-grid grid grid-cols-7 gap-1">
                         </div>
                 </div>
             </section>
 
-            <section id="plantGallerySection" class="content-section px-4 hidden">
+            <section id="gardenSection" class="content-section px-4 hidden">
                 <h2 class="section-title text-5xl md:text-7xl mb-8 md:mb-12 text-center">Nuestro Jardín</h2>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    <div class="plant-card rounded-2xl overflow-hidden">
+                <div id="plantCardGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <div class="plant-card overflow-hidden" 
+                         data-plant-name="Monstera Deliciosa" 
+                         data-plant-image="https://images.unsplash.com/photo-1614594975525-e45190c55d0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                         data-plant-care="Requiere luz indirecta brillante y riego moderado, dejando secar la capa superior del sustrato entre riegos. Humedad ambiental alta es beneficiosa. Fertilizar durante la primavera y verano." 
+                         data-watering-days="7" 
+                         data-watering-progress="3">
                         <img src="https://images.unsplash.com/photo-1598888004629-dc0e2cf70a99?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
-                             alt="Monstera" 
-                             class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
-                             loading="lazy">
+                             alt="Planta Monstera Deliciosa con hojas grandes y verdes." 
+                             class="w-full h-48 object-cover"
+                             loading="lazy"
+                             onerror="this.onerror=null;this.src='https://placehold.co/500x300/e0e0e0/757575?text=Monstera';">
                         <div class="p-4">
                             <h3 class="font-semibold text-lg">Monstera</h3>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">Símbolo de crecimiento juntos</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Crecimiento y prosperidad</p>
                         </div>
                     </div>
-                    <div class="plant-card rounded-2xl overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1597848212624-a19eb35e2651?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
-                             alt="Helecho" 
-                             class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
-                             loading="lazy">
+                    <div class="plant-card overflow-hidden" 
+                         data-plant-name="Tomate Cherry" 
+                         data-plant-image="https://placehold.co/800x600/FF6347/FFFFFF?text=Tomate+Cherry" data-plant-care="Requiere pleno sol (6-8 horas diarias). Riego regular, manteniendo el sustrato húmedo pero no encharcado. Necesita tutores para crecer. Fertilizar cada 2-3 semanas." 
+                         data-watering-days="2" 
+                         data-watering-progress="1">
+                        <img src="https://placehold.co/500x300/FF6347/FFFFFF?text=Tomate+Cherry" 
+                             alt="Planta de Tomate Cherry con frutos rojos." 
+                             class="w-full h-48 object-cover"
+                             loading="lazy"
+                             onerror="this.onerror=null;this.src='https://placehold.co/500x300/e0e0e0/757575?text=Tomate+Cherry';">
                         <div class="p-4">
-                            <h3 class="font-semibold text-lg">Helecho</h3>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">Representa la armonía</p>
+                            <h3 class="font-semibold text-lg">Tomate Cherry</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Abundancia y sabor</p>
                         </div>
                     </div>
-                    <div class="plant-card rounded-2xl overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1598888005052-9acf08e19e74?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
-                             alt="Filodendro" 
-                             class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
-                             loading="lazy">
+                    <div class="plant-card overflow-hidden" 
+                         data-plant-name="Lavanda" 
+                         data-plant-image="https://placehold.co/800x600/8A2BE2/FFFFFF?text=Lavanda" data-plant-care="Necesita mucho sol y suelo bien drenado. Riego moderado, es tolerante a la sequía una vez establecida. Podar después de la floración para mantener la forma." 
+                         data-watering-days="10" 
+                         data-watering-progress="5">
+                         <img src="https://placehold.co/500x300/8A2BE2/FFFFFF?text=Lavanda" 
+                             alt="Planta de Lavanda con flores moradas." 
+                             class="w-full h-48 object-cover"
+                             loading="lazy"
+                             onerror="this.onerror=null;this.src='https://placehold.co/500x300/e0e0e0/757575?text=Lavanda';">
                         <div class="p-4">
-                            <h3 class="font-semibold text-lg">Filodendro</h3>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">Simboliza el amor que crece</p>
+                            <h3 class="font-semibold text-lg">Lavanda</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Calma y tranquilidad</p>
                         </div>
                     </div>
-                    <div class="plant-card rounded-2xl overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1598888005053-3a1b1a7a7b1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
-                             alt="Pothos" 
-                             class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
-                             loading="lazy">
+                    <div class="plant-card overflow-hidden" 
+                         data-plant-name="Cilantro" 
+                         data-plant-image="https://placehold.co/800x600/2E8B57/FFFFFF?text=Cilantro" data-plant-care="Prefiere sol parcial o sombra ligera en climas cálidos. Suelo húmedo y bien drenado. Se puede cosechar continuamente. Tiende a florecer rápido con calor." 
+                         data-watering-days="3" 
+                         data-watering-progress="2">
+                        <img src="https://placehold.co/500x300/2E8B57/FFFFFF?text=Cilantro" 
+                             alt="Planta de Cilantro con hojas verdes frescas." 
+                             class="w-full h-48 object-cover"
+                             loading="lazy"
+                             onerror="this.onerror=null;this.src='https://placehold.co/500x300/e0e0e0/757575?text=Cilantro';">
                         <div class="p-4">
-                            <h3 class="font-semibold text-lg">Pothos</h3>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">Representa la perseverancia</p>
+                            <h3 class="font-semibold text-lg">Cilantro</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Frescura y sabor exótico</p>
                         </div>
+                    </div>
+                     <div class="plant-card overflow-hidden" 
+                         data-plant-name="Uchuva" 
+                         data-plant-image="https://placehold.co/800x600/FFA500/000000?text=Uchuva" data-plant-care="Pleno sol. Suelo fértil y bien drenado. Riego regular, especialmente durante la fructificación. Puede necesitar soporte." 
+                         data-watering-days="4" 
+                         data-watering-progress="1">
+                        <img src="https://placehold.co/500x300/FFA500/000000?text=Uchuva" 
+                             alt="Planta de Uchuva con frutos anaranjados." 
+                             class="w-full h-48 object-cover"
+                             loading="lazy"
+                             onerror="this.onerror=null;this.src='https://placehold.co/500x300/e0e0e0/757575?text=Uchuva';">
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg">Uchuva</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Dulzura exótica y salud</p>
+                        </div>
+                    </div>
+                     <div class="plant-card overflow-hidden" 
+                         data-plant-name="Menta" 
+                         data-plant-image="https://placehold.co/800x600/3CB371/FFFFFF?text=Menta" data-plant-care="Prefiere sombra parcial y suelo húmedo. Es invasiva, por lo que se recomienda cultivarla en maceta. Riego frecuente." 
+                         data-watering-days="2" 
+                         data-watering-progress="0">
+                        <img src="https://placehold.co/500x300/3CB371/FFFFFF?text=Menta" 
+                             alt="Planta de Menta con hojas verdes." 
+                             class="w-full h-48 object-cover"
+                             loading="lazy"
+                             onerror="this.onerror=null;this.src='https://placehold.co/500x300/e0e0e0/757575?text=Menta';">
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg">Menta</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Frescura y vitalidad</p>
+                        </div>
+                    </div>
+                     <div class="plant-card overflow-hidden" 
+                         data-plant-name="Frambuesa" 
+                         data-plant-image="https://placehold.co/800x600/DC143C/FFFFFF?text=Frambuesa" data-plant-care="Pleno sol o sombra parcial. Suelo bien drenado y rico en materia orgánica. Riego regular, especialmente en épocas secas y durante la fructificación." 
+                         data-watering-days="5" 
+                         data-watering-progress="3">
+                        <img src="https://placehold.co/500x300/DC143C/FFFFFF?text=Frambuesa" 
+                             alt="Planta de Frambuesa con frutos rojos." 
+                             class="w-full h-48 object-cover"
+                             loading="lazy"
+                             onerror="this.onerror=null;this.src='https://placehold.co/500x300/e0e0e0/757575?text=Frambuesa';">
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg">Frambuesa</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Dulzura y antioxidantes</p>
+                        </div>
+                    </div>
+                     <div class="plant-card overflow-hidden" 
+                         data-plant-name="Garbanzos" 
+                         data-plant-image="https://placehold.co/800x600/F5DEB3/000000?text=Garbanzos" data-plant-care="Pleno sol. Suelo bien drenado. Riego moderado, son bastante tolerantes a la sequía. Cosechar cuando las vainas estén secas." 
+                         data-watering-days="12" 
+                         data-watering-progress="7">
+                        <img src="https://placehold.co/500x300/F5DEB3/000000?text=Garbanzos" 
+                             alt="Planta de Garbanzos." 
+                             class="w-full h-48 object-cover"
+                             loading="lazy"
+                             onerror="this.onerror=null;this.src='https://placehold.co/500x300/e0e0e0/757575?text=Garbanzos';">
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg">Garbanzos</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Nutrición y versatilidad</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="plantDetailView" class="mt-12 md:mt-16 hidden">
+                    <div class="grid md:grid-cols-2 gap-8 items-stretch"> <div>
+                        <img id="detailPlantImage" src="https://placehold.co/600x800/e0e0e0/757575?text=Planta+Grande" alt="Imagen detallada de la planta seleccionada" class="w-full h-[50vh] sm:h-[60vh] md:h-[70vh] object-cover rounded-xl shadow-lg">
+                    </div>
+                    <div class="space-y-4 plant-info-container flex flex-col justify-between"> <div> <h3 id="detailPlantName" class="text-4xl md:text-5xl font-semibold" style="font-family: var(--font-title);">Nombre de la Planta</h3>
+                        <div id="detailPlantCare" class="leading-relaxed mt-4 mb-4 text-sm"></div> 
+                        <div>
+                            <p class="text-sm font-medium mb-1">Próximo Riego:</p>
+                            <div class="watering-progress-bg w-full h-8 overflow-hidden"> <div id="wateringProgressBar" class="h-full text-xs font-medium text-black p-0.5 leading-none" style="width: 0%;">
+                                <span id="wateringProgressText"></span>
+                            </div>
+                            </div>
+                            <p id="wateringTimeText" class="text-xs text-right mt-1"></p>
+                        </div>
+                    </div>
+                    <button id="closePlantDetailBtn" class="mt-6 btn-primary font-semibold py-2 px-4 rounded-full text-sm self-start">Cerrar Detalles</button> </div>
                     </div>
                 </div>
             </section>
 
-            <section id="todoSection" class="content-section px-4 hidden">
-                <h2 class="section-title text-5xl md:text-7xl mb-8 md:mb-12 text-center">Lista de Tareas</h2>
-                <div class="bg-white p-8 rounded-xl shadow-lg text-center">
-                    <p class="text-gray-700 text-lg">Aquí se mostrará la lista de tareas compartidas.</p>
-                     <img src="https://placehold.co/600x400/E8F5E9/FFD700?text=Lista+de+Tareas+Pr%C3%B3ximamente" alt="[Imagen de Marcador de posición de la lista de tareas]" class="mx-auto mt-6 rounded-lg">
+            <section id="tasksSection" class="content-section px-4 hidden"> <h2 class="section-title text-5xl md:text-7xl mb-8 md:mb-12 text-center">To Do List</h2>
+                <div class="todo-container p-6 md:p-8">
+                    <div class="flex mb-6">
+                        <input type="text" id="newTaskInput" class="input-field flex-grow px-4 py-3 focus:outline-none text-base" placeholder="Añadir nueva tarea...">
+                        <button id="addTaskBtn" class="btn-primary px-4 py-3 font-semibold transition-colors flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+                            </svg>
+                            Añadir
+                        </button>
+                    </div>
+                    <ul id="taskList" class="space-y-3">
+                        </ul>
                 </div>
             </section>
 
             <section id="expenseTrackerSection" class="content-section px-4 hidden">
                 <h2 class="section-title text-5xl md:text-7xl mb-8 md:mb-12 text-center">Control de Gastos</h2>
-                <div class="bg-white p-8 rounded-xl shadow-lg text-center">
-                    <p class="text-gray-700 text-lg">Aquí se mostrará la herramienta de control de gastos.</p>
-                     <img src="https://placehold.co/600x400/E8F5E9/FFD700?text=Control+de+Gastos+Pr%C3%B3ximamente" alt="[Imagen de Marcador de posición del control de gastos]" class="mx-auto mt-6 rounded-lg">
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg text-center">
+                    <p class="text-gray-700 dark:text-gray-300 text-lg">Aquí se mostrará la herramienta de control de gastos.</p>
+                     <img src="https://placehold.co/600x400/E8F5E9/FFD700?text=Control+de+Gastos+Pr%C3%B3ximamente" alt="Marcador de posición para la herramienta de control de gastos" class="mx-auto mt-6 rounded-lg">
                 </div>
             </section>
         </div>
     </div>
     
-    <div id="loginModal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-70 hidden opacity-0 transition-opacity duration-300"> 
-        <div class="login-form scale-up w-full max-w-md mx-4 p-8 rounded-3xl relative overflow-hidden">
-            <div class="absolute -top-20 -right-20 w-40 h-40 bg-accent rounded-full opacity-10"></div>
+    <div id="loginModal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-70 hidden opacity-0"> 
+        <div class="login-form w-full max-w-md mx-4 p-8 relative overflow-hidden"> <div class="absolute -top-20 -right-20 w-40 h-40 bg-accent rounded-full opacity-10"></div>
             <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-yellow-500 rounded-full opacity-10"></div>
             
             <button id="closeLogin" class="absolute top-4 right-4 text-gray-500 dark:text-gray-400 hover:text-accent">
@@ -571,12 +1126,12 @@
             <form class="space-y-6">
                 <div>
                     <label for="email" class="block text-sm font-medium mb-1">Correo Electrónico</label>
-                    <input type="email" id="email" class="input-field w-full px-4 py-3 rounded-xl focus:outline-none transition-all" placeholder="tucorreo@ejemplo.com">
+                    <input type="email" id="email" class="input-field w-full px-4 py-3 focus:outline-none transition-all" placeholder="tucorreo@ejemplo.com">
                 </div>
                 
                 <div>
                     <label for="password" class="block text-sm font-medium mb-1">Contraseña</label>
-                    <input type="password" id="password" class="input-field w-full px-4 py-3 rounded-xl focus:outline-none transition-all" placeholder="••••••••">
+                    <input type="password" id="password" class="input-field w-full px-4 py-3 focus:outline-none transition-all" placeholder="••••••••">
                 </div>
                 
                 <div class="flex items-center justify-between">
@@ -588,7 +1143,7 @@
                     <a href="#" class="text-sm text-accent hover:underline">¿Olvidaste tu contraseña?</a>
                 </div>
                 
-                <button type="submit" class="w-full btn-primary font-semibold py-3 px-4 rounded-xl transition-all">
+                <button type="submit" class="w-full btn-primary font-semibold py-3 px-4 rounded-full transition-all">
                     Iniciar Sesión
                 </button>
             </form>
@@ -603,18 +1158,17 @@
                     <p class="mt-2 text-gray-600 dark:text-gray-400">Cultivando amor y organización juntos</p>
                 </div>
                 
-                <div class="flex space-x-6">
-                    <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-accent transition-colors">
+                <div class="flex space-x-6 mt-1 md:mt-0"> <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-accent transition-colors" aria-label="Facebook">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
                         </svg>
                     </a>
-                    <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-accent transition-colors">
+                    <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-accent transition-colors" aria-label="Instagram">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                         </svg>
                     </a>
-                    <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-accent transition-colors">
+                    <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-accent transition-colors" aria-label="LinkedIn">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                         </svg>
@@ -622,11 +1176,13 @@
                 </div>
             </div>
             
-            <div class="mt-8 pt-8 border-t border-gray-300 dark:border-gray-700 text-center text-sm text-gray-500 dark:text-gray-400">
-                 <p>© 2023 Nuestro Espacio. By Chesterchasis.</p>
+            <div class="mt-6 pt-6 border-t border-gray-300 dark:border-gray-700 text-center text-sm text-gray-500 dark:text-gray-400"> <p>© 2023 Nuestro Espacio. By Chesterchasis.</p>
             </div>
         </div>
     </footer>
+
+    <div id="emojiPalette" class="initially-hidden">
+        </div>
 
     <script>
         const body = document.body;
@@ -634,128 +1190,533 @@
         const sunIconNav = document.getElementById('sunIconNav');
         const moonIconNav = document.getElementById('moonIconNav');
 
+        let monthYearDisplay, calendarGrid, prevMonthBtn, nextMonthBtn, currentDateCal;
+        let calendarNotes = {}; 
+
+        const workSequenceStartDate = new Date(2025, 0, 3); 
+        const workSequencePattern = [
+            'TD', 'TD', 'TD', 'L', 'L', 
+            'TD', 'TD', 'L', 'L', 'L', 
+            'TN', 'TN', 'L', 'L', 
+            'TN', 'TN', 'TN', 'L', 'L', 
+            'TN', 'TN', 'L', 'L', 'L', 
+            'TD', 'TD', 'L', 'L'
+        ]; 
+
+        const emojiOptions = ['❤️', '🎉', '💼', '✈️', '🍽️', '💡', '🎁', '😴', '😊', '🤔'];
+        let currentEmojiSlotTarget = null; 
+
+        const berlinHolidays2025 = [
+            "2025-01-01", "2025-03-08", "2025-04-18", "2025-04-21", "2025-05-01", 
+            "2025-05-08", "2025-05-29", "2025-06-09", "2025-10-03", "2025-12-25", "2025-12-26"
+        ];
+
+        function getWorkEmojiForDate(date) {
+            const targetDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+            const startDate = new Date(workSequenceStartDate.getFullYear(), workSequenceStartDate.getMonth(), workSequenceStartDate.getDate());
+            if (targetDate < startDate) return ''; 
+            const oneDay = 24 * 60 * 60 * 1000;
+            const diffDays = Math.floor((targetDate - startDate) / oneDay);
+            if (diffDays < 0) return ''; 
+            const sequenceIndex = diffDays % workSequencePattern.length;
+            const workCode = workSequencePattern[sequenceIndex];
+            if (workCode === 'TD') return '☀️';
+            if (workCode === 'TN') return '🌙';
+            return '';
+        }
+
+        function loadCalendarNotes() {
+            const storedNotes = localStorage.getItem('calendarNotes');
+            calendarNotes = storedNotes ? JSON.parse(storedNotes) : {};
+        }
+
+        function saveCalendarNotes() {
+            localStorage.setItem('calendarNotes', JSON.stringify(calendarNotes));
+        }
+
         function setDarkMode(isDark) {
-            if (isDark) {
-                body.classList.add('dark-mode');
-                if(sunIconNav) sunIconNav.classList.add('hidden');
-                if(moonIconNav) moonIconNav.classList.remove('hidden');
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                body.classList.remove('dark-mode');
-                if(sunIconNav) sunIconNav.classList.remove('hidden');
-                if(moonIconNav) moonIconNav.classList.add('hidden');
-                localStorage.setItem('darkMode', 'disabled');
+            body.classList.toggle('dark-mode', isDark);
+            if(sunIconNav) sunIconNav.classList.toggle('hidden', isDark);
+            if(moonIconNav) moonIconNav.classList.toggle('hidden', !isDark);
+            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+            if (typeof renderCalendar === "function" && monthYearDisplay && document.getElementById('calendarSection') && !document.getElementById('calendarSection').classList.contains('hidden')) {
+                renderCalendar();
             }
-        }
-
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            setDarkMode(true);
-        } else {
-            setDarkMode(false);
-        }
-
-        if(darkModeToggleNav) {
-            darkModeToggleNav.addEventListener('click', () => {
-                setDarkMode(!body.classList.contains('dark-mode'));
-            });
         }
         
         function setupModals() {
             const loginBtn = document.getElementById('loginBtn');
             const closeLogin = document.getElementById('closeLogin');
             const loginModal = document.getElementById('loginModal');
+            const loginForm = loginModal ? loginModal.querySelector('.login-form') : null;
             
-            if (loginBtn && loginModal && closeLogin) {
+            if (loginBtn && loginModal && closeLogin && loginForm) {
                 loginBtn.addEventListener('click', () => {
                     loginModal.classList.remove('hidden');
-                    setTimeout(() => loginModal.classList.remove('opacity-0'), 10);
+                    loginForm.classList.remove('scale-up'); 
+                    setTimeout(() => {
+                        loginModal.classList.remove('opacity-0');
+                        loginForm.classList.add('scale-up'); 
+                    }, 10); 
                     document.body.style.overflow = 'hidden'; 
                 });
                 
                 closeLogin.addEventListener('click', () => {
                     loginModal.classList.add('opacity-0');
+                    loginForm.classList.remove('scale-up');
                     setTimeout(() => {
                         loginModal.classList.add('hidden');
                         document.body.style.overflow = ''; 
-                    }, 300);
+                    }, 500); 
                 });
             }
         }
         
         function setupCardHover() {
-            const cards = document.querySelectorAll('.plant-card, .feature-card-bg');
-            cards.forEach(card => {
+            document.querySelectorAll('.plant-card, .feature-card-bg').forEach(card => {
                 const img = card.querySelector('img');
-                
                 card.addEventListener('mouseenter', () => {
-                    if (img) {
-                        gsap.to(img, { scale: 1.05, duration: 0.3, ease: "power2.out" });
+                    if (img && card.classList.contains('plant-card')) { 
+                        gsap.to(img, { scale: 1.05, duration: 0.6, ease: "power2.out" });
                     }
                     if (!card.classList.contains('active-card')) {
-                        if (card.classList.contains('plant-card')) {
-                             gsap.to(card, { y: -8, rotation: 1, duration: 0.3, ease: "power2.out" });
-                        } else { 
-                             gsap.to(card, { y: -8, scale: 1.03, boxShadow: body.classList.contains('dark-mode') ? "0 12px 24px rgba(0,0,0,0.3)" : "0 12px 24px rgba(0,0,0,0.15)", duration: 0.3, ease: "power2.out" }); 
-                        }
+                        gsap.to(card, { 
+                            y: card.classList.contains('plant-card') ? -10 : -8, 
+                            rotation: card.classList.contains('plant-card') ? 1 : 0,
+                            scale: card.classList.contains('plant-card') ? 1 : 1.03,
+                            boxShadow: body.classList.contains('dark-mode') ? 
+                                (card.classList.contains('plant-card') ? "0 10px 20px rgba(0,0,0,0.25)" : "0 12px 24px rgba(0,0,0,0.3)") :
+                                (card.classList.contains('plant-card') ? "0 10px 20px rgba(0,0,0,0.15)" : "0 12px 24px rgba(0,0,0,0.15)"),
+                            duration: 0.6, 
+                            ease: "power2.out" 
+                        });
                     }
                 });
-                
                 card.addEventListener('mouseleave', () => {
-                    if (img) {
-                        gsap.to(img, { scale: 1, duration: 0.3, ease: "power2.out" });
+                    if (img && card.classList.contains('plant-card')) { 
+                        gsap.to(img, { scale: 1, duration: 0.6, ease: "power2.out" });
                     }
                     if (!card.classList.contains('active-card')) { 
-                         gsap.to(card, { y: 0, scale: 1, rotation: 0, boxShadow: body.classList.contains('dark-mode') ? "0 4px 8px rgba(0,0,0,0.3)" : "0 4px 8px rgba(0,0,0,0.07)", duration: 0.3, ease: "power2.out" });
+                        gsap.to(card, { 
+                            y: 0, 
+                            scale: 1, 
+                            rotation: 0, 
+                            boxShadow: body.classList.contains('dark-mode') ? 
+                                (card.classList.contains('plant-card') ? "0 2px 4px rgba(0,0,0,0.2)" : "0 4px 8px rgba(0,0,0,0.3)") : 
+                                (card.classList.contains('plant-card') ? "0 2px 4px rgba(0,0,0,0.05)" : "0 4px 8px rgba(0,0,0,0.07)"), 
+                            duration: 0.6, 
+                            ease: "power2.out" 
+                        });
                     }
                 });
             });
         }
 
-        const monthYearDisplay = document.getElementById('monthYearDisplay');
-        const calendarGrid = document.getElementById('calendarGrid');
-        const prevMonthBtn = document.getElementById('prevMonthBtn');
-        const nextMonthBtn = document.getElementById('nextMonthBtn');
-        let currentDate = new Date();
+        function showEmojiPalette(targetSlot) {
+            const palette = document.getElementById('emojiPalette');
+            palette.innerHTML = ''; 
+
+            emojiOptions.forEach(emoji => {
+                const emojiDiv = document.createElement('div');
+                emojiDiv.classList.add('palette-emoji');
+                emojiDiv.textContent = emoji;
+                emojiDiv.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    handleEmojiSelection(emoji, targetSlot);
+                });
+                palette.appendChild(emojiDiv);
+            });
+
+            const closeButton = document.createElement('button');
+            closeButton.id = 'emojiPaletteCloseBtn';
+            closeButton.textContent = '✕ Cerrar'; 
+            closeButton.addEventListener('click', (e) => {
+                e.stopPropagation(); 
+                palette.style.display = 'none'; 
+                currentEmojiSlotTarget = null;
+            });
+            palette.appendChild(closeButton);
+
+            const rect = targetSlot.getBoundingClientRect();
+            palette.style.top = `${rect.bottom + window.scrollY + 5}px`;
+            let leftPosition = rect.left + window.scrollX;
+            if (palette.offsetWidth > 0 && (leftPosition + palette.offsetWidth > window.innerWidth)) {
+                leftPosition = window.innerWidth - palette.offsetWidth - 10; 
+            }
+            palette.style.left = `${Math.max(0, leftPosition)}px`;
+
+            palette.style.display = 'grid'; 
+            palette.classList.remove('initially-hidden'); 
+            currentEmojiSlotTarget = targetSlot;
+        }
+
+        function handleEmojiSelection(selectedEmoji, targetSlot) {
+            targetSlot.textContent = selectedEmoji;
+            const dateStr = targetSlot.dataset.date;
+            const slotIndex = parseInt(targetSlot.dataset.slot, 10) -1;
+
+            if (!calendarNotes[dateStr]) { 
+                const workEmoji = getWorkEmojiForDate(new Date(dateStr + "T00:00:00")); 
+                calendarNotes[dateStr] = { emojis: ['🏠', workEmoji || ''], notes: [] };
+            }
+            if (!Array.isArray(calendarNotes[dateStr].emojis) || calendarNotes[dateStr].emojis.length < 2) { 
+                 calendarNotes[dateStr].emojis = ['🏠', '']; 
+            }
+            calendarNotes[dateStr].emojis[slotIndex] = selectedEmoji;
+            saveCalendarNotes();
+            
+            const palette = document.getElementById('emojiPalette');
+            palette.style.display = 'none'; 
+            currentEmojiSlotTarget = null;
+        }
+
+        document.addEventListener('click', function(event) {
+            const palette = document.getElementById('emojiPalette');
+            
+            if (palette && palette.style.display !== 'none') {
+                const isClickInsidePalette = palette.contains(event.target);
+                const isClickOnCurrentEmojiSlot = currentEmojiSlotTarget && currentEmojiSlotTarget.contains(event.target);
+
+                if (!isClickInsidePalette && !isClickOnCurrentEmojiSlot) {
+                    palette.style.display = 'none'; 
+                    currentEmojiSlotTarget = null;
+                }
+            }
+        });
+
+        function createNoteElement(text, dateStr, index, isPlaceholder, dayCellElement) {
+            const noteDiv = document.createElement('div');
+            noteDiv.classList.add('note-entry');
+            noteDiv.setAttribute('contenteditable', 'true');
+            noteDiv.setAttribute('data-date', dateStr);
+            noteDiv.setAttribute('data-note-index', index);
+            noteDiv.textContent = text;
+
+            if (isPlaceholder) {
+                noteDiv.classList.add('placeholder-note');
+            }
+
+            noteDiv.addEventListener('input', (event) => {
+                if (event.target.textContent.length > 40) {
+                    event.target.textContent = event.target.textContent.substring(0, 40);
+                    const range = document.createRange();
+                    const sel = window.getSelection();
+                    if (sel && event.target.childNodes.length > 0) {
+                        range.setStart(event.target.childNodes[0], Math.min(event.target.textContent.length, 40));
+                        range.collapse(true);
+                        sel.removeAllRanges();
+                        sel.addRange(range);
+                    }
+                }
+            });
+
+            noteDiv.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    event.preventDefault(); 
+                    handleNoteEnter(event.target, dateStr, index, dayCellElement);
+                }
+            });
+
+            noteDiv.addEventListener('blur', (event) => {
+                handleNoteBlur(event.target, dateStr, index, dayCellElement);
+            });
+            return noteDiv;
+        }
+        
+        function handleNoteEnter(noteElement, dateStr, noteIndex, dayCellElement) {
+            const currentText = noteElement.textContent.trim();
+            const dayData = calendarNotes[dateStr] || { emojis: ['🏠', ''], notes: [] };
+            if (!Array.isArray(dayData.notes)) dayData.notes = []; 
+
+            if (noteIndex < dayData.notes.length) { 
+                dayData.notes[noteIndex] = currentText;
+            } else if (currentText && dayData.notes.length < 2) { 
+                dayData.notes.push(currentText);
+            } else if (currentText && dayData.notes.length >= 2) { 
+                if (noteIndex < 2) dayData.notes[noteIndex] = currentText;
+            }
+            dayData.notes = dayData.notes.filter((note, idx) => note.trim() !== "" || idx === noteIndex);
+            calendarNotes[dateStr] = dayData;
+            saveCalendarNotes();
+            renderNotesForDay(dayCellElement, dateStr); 
+
+            if (currentText && dayData.notes.length < 2) {
+                const notesContainer = dayCellElement.querySelector('.day-notes-container');
+                const newPlaceholder = notesContainer ? notesContainer.querySelector('.note-entry.placeholder-note') : null;
+                if (newPlaceholder) newPlaceholder.focus();
+            } else {
+                noteElement.blur(); 
+            }
+        }
+
+        function handleNoteBlur(noteElement, dateStr, noteIndex, dayCellElement) {
+            const text = noteElement.textContent.trim();
+            const dayData = calendarNotes[dateStr] || { emojis: ['🏠', ''], notes: [] };
+            if (!Array.isArray(dayData.notes)) dayData.notes = [];
+            if (noteIndex < dayData.notes.length) { 
+                if (text === "") dayData.notes.splice(noteIndex, 1); 
+                else dayData.notes[noteIndex] = text; 
+            } else if (text && dayData.notes.length < 2) { 
+                dayData.notes.push(text);
+            }
+            dayData.notes = dayData.notes.filter(note => note.trim() !== "");
+            calendarNotes[dateStr] = dayData;
+            saveCalendarNotes();
+            renderNotesForDay(dayCellElement, dateStr); 
+        }
+        
+        function renderNotesForDay(dayCellElement, dateStr) {
+            const notesContainer = dayCellElement.querySelector('.day-notes-container');
+            if (!notesContainer) return;
+            notesContainer.innerHTML = ''; 
+            const dayData = calendarNotes[dateStr] || { emojis: ['🏠', ''], notes: [] };
+            const currentNotes = Array.isArray(dayData.notes) ? dayData.notes : [];
+            currentNotes.slice(0, 2).forEach((noteText, index) => {
+                notesContainer.appendChild(createNoteElement(noteText, dateStr, index, false, dayCellElement));
+            });
+            if (currentNotes.length < 2) {
+                notesContainer.appendChild(createNoteElement("", dateStr, currentNotes.length, true, dayCellElement));
+            }
+            const noteIndicator = dayCellElement.querySelector('.note-indicator');
+            if (noteIndicator) {
+                noteIndicator.classList.toggle('has-note', currentNotes.some(note => note.trim() !== ""));
+            }
+        }
 
         function renderCalendar() {
-            if (!monthYearDisplay || !calendarGrid) return;
-
-            const month = currentDate.getMonth();
-            const year = currentDate.getFullYear();
-            
-            monthYearDisplay.textContent = `${currentDate.toLocaleDateString('es-ES', { month: 'long' })} ${year}`;
+            if (!monthYearDisplay || !calendarGrid) return; 
+            const month = currentDateCal.getMonth();
+            const year = currentDateCal.getFullYear();
+            const monthName = currentDateCal.toLocaleDateString('es-ES', { month: 'long' });
+            monthYearDisplay.textContent = `${monthName.charAt(0).toUpperCase() + monthName.slice(1)} ${year}`;
             calendarGrid.innerHTML = ''; 
-
-            const firstDayOfMonth = new Date(year, month, 1).getDay();
+            const firstDayOfMonth = (new Date(year, month, 1).getDay() + 6) % 7; 
             const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const daysInPrevMonth = new Date(year, month, 0).getDate();
             const today = new Date();
 
             for (let i = 0; i < firstDayOfMonth; i++) {
-                const emptyCell = document.createElement('div');
-                calendarGrid.appendChild(emptyCell);
+                const dayCell = document.createElement('div');
+                dayCell.classList.add('calendar-day-cell', 'other-month', 'rounded-md', 'p-1', 'sm:p-1.5'); 
+                dayCell.innerHTML = `<div class="calendar-day flex flex-col h-full"><div class="day-header-info"><div class="note-indicator"></div><span class="day-number">${daysInPrevMonth - firstDayOfMonth + 1 + i}</span></div><div class="day-emojis-container"><span class="emoji-slot"></span><span class="emoji-slot"></span></div><div class="day-notes-container flex-grow"></div></div>`;
+                calendarGrid.appendChild(dayCell);
             }
 
             for (let day = 1; day <= daysInMonth; day++) {
-                const dayCell = document.createElement('div');
-                dayCell.textContent = day;
-                dayCell.classList.add('calendar-day', 'p-2', 'text-center', 'text-sm', 'md:text-base', 'cursor-pointer', 'hover:bg-gray-100', 'dark:hover:bg-gray-700', 'rounded');
-                if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
-                    dayCell.classList.add('current-day');
+                const dayCell = document.createElement('div'); // Outer cell container
+                dayCell.classList.add('calendar-day-cell', 'rounded-md', 'p-1', 'sm:p-1.5');
+                
+                const currentDateForLogic = new Date(year, month, day);
+                const currentDateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                const workEmojiFromSequence = getWorkEmojiForDate(currentDateForLogic);
+
+                if (!calendarNotes[currentDateStr]) {
+                    calendarNotes[currentDateStr] = { emojis: ['🏠', workEmojiFromSequence || ''], notes: [] };
+                } else {
+                    if (!Array.isArray(calendarNotes[currentDateStr].emojis) || calendarNotes[currentDateStr].emojis.length < 2) {
+                        const currentEmoji1 = Array.isArray(calendarNotes[currentDateStr].emojis) && calendarNotes[currentDateStr].emojis[0] ? calendarNotes[currentDateStr].emojis[0] : '🏠';
+                        const currentEmoji2 = Array.isArray(calendarNotes[currentDateStr].emojis) && calendarNotes[currentDateStr].emojis[1] ? calendarNotes[currentDateStr].emojis[1] : (workEmojiFromSequence || '');
+                        calendarNotes[currentDateStr].emojis = [currentEmoji1, currentEmoji2];
+                    } else if (calendarNotes[currentDateStr].emojis[1] === '' && workEmojiFromSequence) {
+                        calendarNotes[currentDateStr].emojis[1] = workEmojiFromSequence;
+                    }
+                    if (!Array.isArray(calendarNotes[currentDateStr].notes)) {
+                        calendarNotes[currentDateStr].notes = [];
+                    }
+                }
+                const dayData = calendarNotes[currentDateStr];
+
+                const dayContentWrapper = document.createElement('div'); 
+                dayContentWrapper.classList.add('calendar-day', 'flex', 'flex-col', 'h-full');
+                dayCell.appendChild(dayContentWrapper);
+
+                const dayHeaderInfo = document.createElement('div');
+                dayHeaderInfo.classList.add('day-header-info');
+                const noteIndicator = document.createElement('div');
+                noteIndicator.classList.add('note-indicator');
+                const dayNumberSpan = document.createElement('span');
+                dayNumberSpan.classList.add('day-number');
+                dayNumberSpan.textContent = day;
+                dayHeaderInfo.appendChild(noteIndicator); 
+                dayHeaderInfo.appendChild(dayNumberSpan);  
+                dayContentWrapper.appendChild(dayHeaderInfo);
+
+                const emojisContainer = document.createElement('div');
+                emojisContainer.classList.add('day-emojis-container');
+                const emojiSlot1 = document.createElement('span');
+                emojiSlot1.classList.add('emoji-slot');
+                emojiSlot1.setAttribute('data-date', currentDateStr);
+                emojiSlot1.setAttribute('data-slot', '1');
+                emojiSlot1.textContent = dayData.emojis[0] || '🏠';
+                emojiSlot1.addEventListener('click', (e) => { e.stopPropagation(); showEmojiPalette(emojiSlot1); });
+                emojisContainer.appendChild(emojiSlot1);
+                const emojiSlot2 = document.createElement('span');
+                emojiSlot2.classList.add('emoji-slot');
+                emojiSlot2.setAttribute('data-date', currentDateStr);
+                emojiSlot2.setAttribute('data-slot', '2');
+                emojiSlot2.textContent = dayData.emojis[1] || '';
+                emojiSlot2.addEventListener('click', (e) => { e.stopPropagation(); showEmojiPalette(emojiSlot2); });
+                emojisContainer.appendChild(emojiSlot2);
+                dayContentWrapper.appendChild(emojisContainer);
+                
+                const notesContainerDiv = document.createElement('div');
+                notesContainerDiv.classList.add('day-notes-container');
+                dayContentWrapper.appendChild(notesContainerDiv);
+                
+                renderNotesForDay(dayCell, currentDateStr); 
+
+                const dayOfWeek = currentDateForLogic.getDay(); 
+                const isHoliday = berlinHolidays2025.includes(currentDateStr);
+                const isToday = day === today.getDate() && month === today.getMonth() && year === today.getFullYear();
+
+                // console.log(`[CalRender] Día: ${currentDateStr}, Hoy: ${isToday}, Festivo: ${isHoliday}, FinSemana: ${dayOfWeek === 0 || dayOfWeek === 6}`);
+
+                // Aplicar clases de estado a dayContentWrapper
+                if (isToday) {
+                    dayContentWrapper.classList.add('current-day');
+                    dayContentWrapper.classList.remove('holiday-berlin-light', 'holiday-berlin-dark', 'weekend-light', 'weekend-dark');
+                    // console.log(`[CalRender] Aplicada 'current-day' a ${currentDateStr} (dayContentWrapper)`);
+                } else if (isHoliday) {
+                    const holidayClass = body.classList.contains('dark-mode') ? 'holiday-berlin-dark' : 'holiday-berlin-light';
+                    dayContentWrapper.classList.add(holidayClass);
+                    // console.log(`[CalRender] Aplicada '${holidayClass}' a ${currentDateStr} (dayContentWrapper)`);
+                } else if (dayOfWeek === 0 || dayOfWeek === 6) { 
+                    const weekendClass = body.classList.contains('dark-mode') ? 'weekend-dark' : 'weekend-light';
+                    dayContentWrapper.classList.add(weekendClass);
+                    // console.log(`[CalRender] Aplicada '${weekendClass}' a ${currentDateStr} (dayContentWrapper)`);
+                }
+
+                // Aplicar clases de hover a dayCell (el contenedor exterior)
+                if (!(dayContentWrapper.classList.contains('current-day') || 
+                      dayContentWrapper.classList.contains('holiday-berlin-light') || 
+                      dayContentWrapper.classList.contains('holiday-berlin-dark') || 
+                      dayContentWrapper.classList.contains('weekend-light') || 
+                      dayContentWrapper.classList.contains('weekend-dark'))) {
+                    dayCell.classList.add('cursor-pointer', 'hover:bg-gray-100', 'dark:hover:bg-gray-700');
                 }
                 calendarGrid.appendChild(dayCell);
             }
+            saveCalendarNotes(); 
+
+            const totalCells = firstDayOfMonth + daysInMonth;
+            const remainingCells = (7 - (totalCells % 7)) % 7; 
+            for (let i = 1; i <= remainingCells; i++) {
+                const dayCell = document.createElement('div');
+                dayCell.classList.add('calendar-day-cell', 'other-month', 'rounded-md', 'p-1', 'sm:p-1.5');
+                 dayCell.innerHTML = `<div class="calendar-day flex flex-col h-full"><div class="day-header-info"><div class="note-indicator"></div><span class="day-number">${i}</span></div><div class="day-emojis-container"><span class="emoji-slot"></span><span class="emoji-slot"></span></div><div class="day-notes-container flex-grow"></div></div>`;
+                calendarGrid.appendChild(dayCell);
+            }
+        }
+        
+        const taskInput = document.getElementById('newTaskInput');
+        const addTaskBtn = document.getElementById('addTaskBtn');
+        const taskListUl = document.getElementById('taskList');
+        let tasks = JSON.parse(localStorage.getItem('tasks')) || [
+            { text: "Comprar ingredientes para la cena", completed: false, dateAdded: "17/05/2025" },
+            { text: "Pagar factura de internet", completed: true, dateAdded: "16/05/2025" },
+            { text: "Planificar escapada de fin de semana", completed: false, dateAdded: "15/05/2025" },
+            { text: "Llamar al fontanero", completed: false, dateAdded: "14/05/2025" }
+        ];
+
+        function saveTasks() {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
         }
 
-        if(prevMonthBtn) {
-            prevMonthBtn.addEventListener('click', () => {
-                currentDate.setMonth(currentDate.getMonth() - 1);
-                renderCalendar();
+        function renderTasks() {
+            if (!taskListUl) return;
+            taskListUl.innerHTML = ''; 
+            tasks.forEach((task, index) => {
+                const li = document.createElement('li');
+                const mainContentWrapper = document.createElement('div');
+                mainContentWrapper.classList.add('flex', 'items-center', 'flex-grow');
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.checked = task.completed;
+                checkbox.id = `task-${index}`;
+                checkbox.classList.add('mr-3', 'flex-shrink-0', 'h-5', 'w-5', 'rounded', 'border-gray-300', 'dark:border-gray-600', 'text-accent', 'focus:ring-accent'); 
+                checkbox.addEventListener('change', () => {
+                    tasks[index].completed = checkbox.checked;
+                    saveTasks();
+                    renderTasks(); 
+                });
+                mainContentWrapper.appendChild(checkbox);
+                const taskItemContent = document.createElement('div');
+                taskItemContent.classList.add('task-item-content');
+                const taskTextLabel = document.createElement('label');
+                taskTextLabel.textContent = task.text;
+                taskTextLabel.htmlFor = `task-${index}`; 
+                if (task.completed) {
+                    taskTextLabel.classList.add('completed');
+                }
+                taskItemContent.appendChild(taskTextLabel);
+                if (task.dateAdded) {
+                    const dateSpan = document.createElement('span');
+                    dateSpan.classList.add('task-date', 'block'); 
+                    dateSpan.textContent = `Agregado: ${task.dateAdded}`;
+                    taskItemContent.appendChild(dateSpan);
+                }
+                mainContentWrapper.appendChild(taskItemContent);
+                li.appendChild(mainContentWrapper);
+                const deleteBtn = document.createElement('button');
+                deleteBtn.classList.add('delete-task', 'ml-auto', 'flex-shrink-0'); 
+                deleteBtn.title = 'Eliminar tarea';
+                deleteBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" /></svg>`;
+                deleteBtn.addEventListener('click', () => {
+                    tasks.splice(index, 1); 
+                    saveTasks();
+                    renderTasks(); 
+                });
+                li.appendChild(deleteBtn);
+                taskListUl.appendChild(li);
             });
         }
-        if(nextMonthBtn) {
-            nextMonthBtn.addEventListener('click', () => {
-                currentDate.setMonth(currentDate.getMonth() + 1);
-                renderCalendar();
+        
+        const plantDetailView = document.getElementById('plantDetailView');
+        const detailPlantImage = document.getElementById('detailPlantImage');
+        const detailPlantName = document.getElementById('detailPlantName');
+        const detailPlantCare = document.getElementById('detailPlantCare');
+        const wateringProgressBar = document.getElementById('wateringProgressBar');
+        const wateringProgressText = document.getElementById('wateringProgressText');
+        const wateringTimeText = document.getElementById('wateringTimeText');
+        const closePlantDetailBtn = document.getElementById('closePlantDetailBtn');
+        const plantCardGrid = document.getElementById('plantCardGrid');
+
+        function showPlantDetail(plantData) {
+            if (!plantDetailView || !detailPlantImage || !detailPlantName || !detailPlantCare || !wateringProgressBar || !wateringProgressText || !wateringTimeText) return;
+            detailPlantImage.src = plantData.image;
+            detailPlantImage.onerror = () => { detailPlantImage.src = `https://placehold.co/600x800/e0e0e0/757575?text=${encodeURIComponent(plantData.name)}`; };
+            detailPlantName.textContent = plantData.name;
+            const careInstructions = plantData.care.split('. ').filter(instr => instr.trim() !== '');
+            let careHtml = '<ul class="list-disc list-inside space-y-1 text-sm">'; 
+            careInstructions.forEach(instr => {
+                careHtml += `<li>${instr.endsWith('.') ? instr : instr + '.'}</li>`;
+            });
+            careHtml += '</ul>';
+            detailPlantCare.innerHTML = careHtml;
+            const progress = (parseInt(plantData.progress) / parseInt(plantData.days)) * 100;
+            wateringProgressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`; 
+            wateringProgressText.textContent = `${plantData.progress} de ${plantData.days} días`;
+            const daysLeft = parseInt(plantData.days) - parseInt(plantData.progress);
+            wateringTimeText.textContent = daysLeft > 0 ? `Próximo riego en ${daysLeft} día(s)` : 'Regar hoy';
+            if(plantCardGrid) plantCardGrid.classList.add('hidden'); 
+            plantDetailView.classList.remove('hidden');
+            const navbarHeight = document.getElementById('navbar').offsetHeight;
+            const elementPosition = plantDetailView.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - navbarHeight - 20; 
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
+        
+        if(closePlantDetailBtn) {
+            closePlantDetailBtn.addEventListener('click', () => {
+                if(plantDetailView) plantDetailView.classList.add('hidden');
+                if(plantCardGrid) plantCardGrid.classList.remove('hidden'); 
+                const gardenSection = document.getElementById('gardenSection');
+                if (gardenSection) {
+                     const navbarHeight = document.getElementById('navbar').offsetHeight;
+                     const elementPosition = gardenSection.getBoundingClientRect().top + window.pageYOffset;
+                     const offsetPosition = elementPosition - navbarHeight;
+                     window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                }
             });
         }
 
@@ -769,70 +1730,77 @@
             };
             const contentSections = {
                 heroSection: document.getElementById('heroSection'),
+                featuresSection: document.getElementById('featuresSection'),
                 calendarSection: document.getElementById('calendarSection'),
-                plantGallerySection: document.getElementById('plantGallerySection'),
-                todoSection: document.getElementById('todoSection'),
+                gardenSection: document.getElementById('gardenSection'), 
+                tasksSection: document.getElementById('tasksSection'), 
                 expenseTrackerSection: document.getElementById('expenseTrackerSection')
             };
             
             function setActiveUI(activeSectionId, activeCardId) {
                 navLinks.forEach(link => {
-                    // El enlace "Nuestro Espacio" (logo/marca) no debe tener subrayado activo
-                    if (link.classList.contains('navbar-brand-link')) {
-                        link.classList.remove('active-nav-link');
+                    if (link.classList.contains('navbar-brand-link')) { 
+                        link.classList.remove('active-nav-link'); 
                         return;
                     }
-                    if (link.dataset.targetId === activeSectionId) {
-                        link.classList.add('active-nav-link');
-                    } else {
-                        link.classList.remove('active-nav-link');
-                    }
+                    link.classList.toggle('active-nav-link', link.dataset.targetId === activeSectionId);
                 });
-
-                Object.entries(featureCards).forEach(([cardKey, cardElement]) => {
+                Object.values(featureCards).forEach(cardElement => {
                     if (cardElement) {
-                        if (cardElement.id === activeCardId) {
-                            cardElement.classList.add('active-card');
-                            gsap.to(cardElement, { y: -6, scale: 1.02, duration: 0.2 });
-                        } else {
-                            cardElement.classList.remove('active-card');
-                            gsap.to(cardElement, { y: 0, scale: 1, rotation: 0, boxShadow: body.classList.contains('dark-mode') ? "0 4px 8px rgba(0,0,0,0.3)" : "0 4px 8px rgba(0,0,0,0.07)", duration: 0.1 });
-                        }
+                        const isActive = cardElement.id === activeCardId;
+                        cardElement.classList.toggle('active-card', isActive);
+                        gsap.to(cardElement, { 
+                            y: isActive ? -6 : 0, 
+                            scale: isActive ? 1.02 : 1, 
+                            rotation: 0, 
+                            boxShadow: isActive ? 
+                                (body.classList.contains('dark-mode') ? "0 12px 24px rgba(0,0,0,0.3)" : "0 12px 24px rgba(0,0,0,0.15)") :
+                                (body.classList.contains('dark-mode') ? "0 4px 8px rgba(0,0,0,0.3)" : "0 4px 8px rgba(0,0,0,0.07)"),
+                            duration: 0.4, 
+                            ease: "power1.out" 
+                        });
                     }
                 });
             }
             
             function showSection(sectionId, cardId) {
                 Object.values(contentSections).forEach(section => {
-                    if (section && section.id !== sectionId) {
-                         section.classList.add('hidden');
+                    if (section) {
+                        const isHeroOrFeatures = section.id === 'heroSection' || section.id === 'featuresSection';
+                        const isTargetSection = section.id === sectionId;
+                        if (sectionId === 'heroSection') {
+                            section.classList.toggle('hidden', !isHeroOrFeatures);
+                        } else {
+                            section.classList.toggle('hidden', !(isTargetSection || section.id === 'featuresSection'));
+                        }
                     }
                 });
+
+                if(plantDetailView && sectionId !== 'gardenSection') plantDetailView.classList.add('hidden');
+                if(plantCardGrid) {
+                    plantCardGrid.classList.toggle('hidden', 
+                        !(sectionId === 'gardenSection' && (!plantDetailView || plantDetailView.classList.contains('hidden')))
+                    );
+                }
                 
                 const sectionToShow = contentSections[sectionId];
                 if (sectionToShow) {
-                    sectionToShow.classList.remove('hidden');
                     const navbarHeight = document.getElementById('navbar').offsetHeight;
-                    const elementPosition = sectionToShow.getBoundingClientRect().top + window.pageYOffset;
-                    const offsetPosition = elementPosition - navbarHeight;
+                    let offsetPosition = (sectionId === 'heroSection') ? 0 : sectionToShow.offsetTop - navbarHeight;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
 
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-
-                    if (sectionId === 'calendarSection') renderCalendar();
+                    if (sectionId === 'calendarSection' && typeof renderCalendar === "function") renderCalendar();
+                    if (sectionId === 'tasksSection' && typeof renderTasks === "function") renderTasks(); 
                 }
                 setActiveUI(sectionId, cardId);
             }
             
-            Object.entries(featureCards).forEach(([cardId, cardElement]) => {
+            Object.entries(featureCards).forEach(([cardKey, cardElement]) => { 
                 if (cardElement) {
-                    const targetSectionId = cardElement.id.replace('Card', 'Section');
-                    cardElement.addEventListener('click', () => showSection(targetSectionId, cardId));
+                    let targetSectionId = cardElement.id.replace('Card', 'Section'); 
+                    cardElement.addEventListener('click', () => showSection(targetSectionId, cardElement.id));
                 }
             });
-
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -841,27 +1809,82 @@
                     showSection(targetId, cardId);
                 });
             });
+            document.querySelectorAll('.plant-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    showPlantDetail({
+                        name: card.dataset.plantName, image: card.dataset.plantImage,
+                        care: card.dataset.plantCare, days: card.dataset.wateringDays,
+                        progress: card.dataset.wateringProgress
+                    });
+                    setActiveUI('gardenSection', 'gardenCard'); 
+                });
+            });
+             showSection('heroSection', null);
         }
         
         document.addEventListener('DOMContentLoaded', () => {
+            monthYearDisplay = document.getElementById('monthYearDisplay');
+            calendarGrid = document.getElementById('calendarGrid');
+            prevMonthBtn = document.getElementById('prevMonthBtn');
+            nextMonthBtn = document.getElementById('nextMonthBtn');
+            currentDateCal = new Date(); 
+
+            loadCalendarNotes(); 
+            setDarkMode(localStorage.getItem('darkMode') === 'enabled');
+            
+            if (monthYearDisplay && document.getElementById('calendarSection') && !document.getElementById('calendarSection').classList.contains('hidden')) {
+                 renderCalendar(); 
+            }
+
             setupModals();
             setupCardHover();
             setupDynamicContentAndNav(); 
-            renderCalendar(); 
+            if (typeof renderTasks === "function") renderTasks(); 
             
             const loginButton = document.getElementById('loginBtn');
-            if (loginButton) {
+            if (loginButton && typeof gsap !== 'undefined') {
                 gsap.to("#loginBtn", {
-                    y: -5,
-                    duration: 2,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut"
+                    y: -5, duration: 2, repeat: -1, yoyo: true, ease: "sine.inOut" 
                 });
             }
-             const initialActiveLink = document.querySelector('#navbar .nav-link[data-target-id="heroSection"]:not(.navbar-brand-link)');
-            if(initialActiveLink) initialActiveLink.classList.add('active-nav-link');
 
+            if(darkModeToggleNav) {
+                darkModeToggleNav.addEventListener('click', () => setDarkMode(!body.classList.contains('dark-mode')));
+            }
+            if(prevMonthBtn) {
+                prevMonthBtn.addEventListener('click', () => {
+                    currentDateCal.setMonth(currentDateCal.getMonth() - 1);
+                    if (typeof renderCalendar === "function") renderCalendar();
+                });
+            }
+            if(nextMonthBtn) {
+                nextMonthBtn.addEventListener('click', () => {
+                    currentDateCal.setMonth(currentDateCal.getMonth() + 1);
+                    if (typeof renderCalendar === "function") renderCalendar();
+                });
+            }
+
+            if (addTaskBtn && taskInput) {
+                const addTaskAction = () => {
+                    const text = taskInput.value.trim();
+                    if (text) {
+                        const newDate = new Date().toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
+                        tasks.push({ text: text, completed: false, dateAdded: newDate });
+                        taskInput.value = ''; 
+                        saveTasks();
+                        if (typeof renderTasks === "function") renderTasks();
+                    }
+                };
+                addTaskBtn.addEventListener('click', addTaskAction);
+                taskInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') addTaskAction();
+                });
+            }
+            const emojiPalette = document.getElementById('emojiPalette');
+            if (emojiPalette) {
+                emojiPalette.style.display = 'none';
+                emojiPalette.classList.remove('initially-hidden'); 
+            }
         });
     </script>
 </body>
