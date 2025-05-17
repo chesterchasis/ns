@@ -191,13 +191,57 @@
         .border-accent { border-color: var(--accent-color) !important; }
         
         .feature-card-bg {
-            background: var(--card-bg-light); 
+            /* background: var(--card-bg-light); No longer needed, will be image */
             border: 2px solid transparent; 
             cursor: pointer; 
             transition: border-color 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease;
             box-shadow: 0 4px 8px rgba(0,0,0,0.07); 
             border-radius: 1rem; 
+            position: relative; /* For overlay positioning */
+            overflow: hidden; /* To contain the overlay within rounded borders */
+            background-size: cover;
+            background-position: center;
         }
+
+        .feature-card-bg::before { /* Overlay for text legibility */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.4); /* Dark overlay, adjust opacity as needed */
+            border-radius: inherit; /* Match parent's border-radius */
+            z-index: 1;
+            transition: background-color 0.3s ease;
+        }
+
+        .feature-card-bg:hover::before {
+            background-color: rgba(0, 0, 0, 0.2); /* Lighter overlay on hover */
+        }
+        
+        /* Specific background images for each card */
+        #calendarCard {
+            background-image: url('https://placehold.co/400x300/87CEEB/FFFFFF?text=Calendario&font=playfairdisplay'); /* Sky blueish */
+        }
+        #gardenCard {
+            background-image: url('https://placehold.co/400x300/228B22/FFFFFF?text=Jard%C3%ADn&font=playfairdisplay'); /* Forest green */
+        }
+        #tasksCard {
+            background-image: url('https://placehold.co/400x300/D2B48C/000000?text=To+Do+List&font=playfairdisplay'); /* Tan */
+        }
+        #expensesCard {
+            background-image: url('https://placehold.co/400x300/B0C4DE/000000?text=Gastos&font=playfairdisplay'); /* Light steel blue */
+        }
+
+
+        .feature-card-bg .icon-container,
+        .feature-card-bg h3,
+        .feature-card-bg p {
+            position: relative; /* Ensure content is above the overlay */
+            z-index: 2;
+        }
+
         .feature-card-bg .icon-container {
             background-color: var(--icon-bg-light);
             transition: background-color 0.5s ease, transform 0.5s ease;
@@ -211,18 +255,26 @@
             transition: color 0.5s ease;
         }
         .feature-card-bg h3 {
-            color: var(--text-light); 
+            color: var(--color-white); /* Changed to white for better contrast on image */
             font-weight: 600;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Add text shadow for legibility */
         }
         .feature-card-bg p {
-            color: var(--text-light-secondary);
+            color: #f0f0f0; /* Changed to light gray for better contrast */
             opacity: 0.9;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5); /* Add text shadow for legibility */
         }
 
         body.dark-mode .feature-card-bg {
-            background: var(--card-bg-dark);
+            /* background: var(--card-bg-dark); No longer needed */
             border-color: transparent; 
             box-shadow: 0 4px 8px rgba(0,0,0,0.3); 
+        }
+         body.dark-mode .feature-card-bg::before {
+            background-color: rgba(0, 0, 0, 0.5); /* Slightly darker overlay for dark mode */
+        }
+        body.dark-mode .feature-card-bg:hover::before {
+            background-color: rgba(0, 0, 0, 0.3); 
         }
         body.dark-mode .feature-card-bg .icon-container {
             background-color: var(--icon-bg-dark);
@@ -231,10 +283,10 @@
             color: var(--icon-color-dark) !important;
         }
         body.dark-mode .feature-card-bg h3 {
-            color: var(--text-dark); 
+            color: var(--color-white); 
         }
         body.dark-mode .feature-card-bg p {
-            color: var(--text-dark-secondary); 
+            color: #e0e0e0; 
         }
         
         .content-section {
@@ -294,8 +346,7 @@
             justify-content: flex-start; 
             align-items: stretch; 
             position: relative; 
-            /* padding: 0.125rem; No padding here, handled by Tailwind on JS or internal elements */
-            min-height: 6rem; /* Base min-height, aspect-ratio will primarily define height */
+            min-height: 6rem; 
             transition: background-color 0.2s;
             border-radius: 0.375rem; 
         }
@@ -311,13 +362,13 @@
             padding: 0.125rem; 
         }
         .calendar-day .day-number {
-            font-size: 0.625rem; /* 10px */
+            font-size: 0.625rem; 
             font-weight: 500;
             order: 2; 
         }
-        @media (min-width: 640px) { /* sm: */
+        @media (min-width: 640px) { 
             .calendar-day .day-number {
-                font-size: 0.75rem; /* 12px */
+                font-size: 0.75rem; 
             }
         }
         .calendar-day .note-indicator {
@@ -337,29 +388,29 @@
         .calendar-day .day-emojis-container {
             display: flex;
             justify-content: space-around; 
-            font-size: 0.7rem; /* Base size for emojis */
+            font-size: 0.7rem; 
             margin-bottom: 0.25rem; 
-            min-height: 1.1rem; /* Adjusted min-height */
+            min-height: 1.1rem; 
         }
-         @media (min-width: 640px) { /* sm: */
+         @media (min-width: 640px) { 
             .calendar-day .day-emojis-container {
-                font-size: 0.75rem; /* Original size for sm and up */
+                font-size: 0.75rem; 
                 min-height: 1.25rem;
             }
         }
 
         .calendar-day .emoji-slot { 
-            width: 1.25rem; /* Base width for emoji slot */
+            width: 1.25rem; 
             text-align: center;
             cursor: pointer; 
-            padding: 0.1rem; /* Base padding */
+            padding: 0.1rem; 
             border-radius: 0.25rem;
             user-select: none; 
         }
-        @media (min-width: 640px) { /* sm: */
+        @media (min-width: 640px) { 
             .calendar-day .emoji-slot {
-                width: 1.5rem; /* Original width for sm and up */
-                padding: 0.125rem; /* Original padding */
+                width: 1.5rem; 
+                padding: 0.125rem; 
             }
         }
         .calendar-day .emoji-slot:hover {
@@ -373,28 +424,28 @@
         .calendar-day .day-notes-container {
             flex-grow: 1; 
             overflow-y: auto; 
-            max-height: calc(100% - 2.5rem); /* Adjusted based on potentially smaller header/emojis */
+            max-height: calc(100% - 2.5rem); 
         }
         .calendar-day .note-entry {
-            font-size: 0.55rem; /* Slightly smaller base font for notes */
+            font-size: 0.55rem; 
             line-height: 1.2; 
             color: var(--text-light-secondary);
             text-align: left;
             word-break: break-word; 
-            padding: 0.15rem; /* Reduced padding */
+            padding: 0.15rem; 
             border: 1px dashed transparent; 
             outline: none; 
             border-radius: 0.25rem;
             transition: border-color 0.2s, background-color 0.2s;
-            min-height: 1rem; /* Reduced min-height */
-            margin-bottom: 0.15rem; /* Reduced margin */
+            min-height: 1rem; 
+            margin-bottom: 0.15rem; 
         }
-         @media (min-width: 640px) { /* sm: */
+         @media (min-width: 640px) { 
             .calendar-day .note-entry {
-                font-size: 0.6rem; /* Original font size */
-                padding: 0.2rem; /* Original padding */
-                min-height: 1.25rem; /* Original min-height */
-                margin-bottom: 0.25rem; /* Original margin */
+                font-size: 0.6rem; 
+                padding: 0.2rem; 
+                min-height: 1.25rem; 
+                margin-bottom: 0.25rem; 
             }
         }
         .calendar-day .note-entry:last-child {
@@ -745,7 +796,7 @@
             z-index: 1; 
             background-image: url('https://raw.githubusercontent.com/chesterchasis/ns/refs/heads/main/9B262D7E-9298-421D-8135-21A4131C0798.jpeg'); 
             background-size: cover;
-            background-position: 80% center; 
+            background-position: 50% center; 
         }
 
         #heroSection::after { 
@@ -913,7 +964,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 15h.01M12 15h.01M15 15h.01M9 18h.01M12 18h.01M15 18h.01" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2 text-center pointer-events-none">Gastos</h3>
+                    <h3 class="text-xl font-semibold mb-2 text-center pointer-events-none">Control de Gastos</h3>
                     <p class="text-sm text-center pointer-events-none">Lleva un registro detallado de tus finanzas.</p>
                 </div>
             </div>
@@ -945,7 +996,7 @@
                 <div id="plantCardGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     <div class="plant-card overflow-hidden" 
                          data-plant-name="Monstera Deliciosa" 
-                         data-plant-image="https://raw.githubusercontent.com/chesterchasis/ns/refs/heads/main/bosque_monstera.png"
+                         data-plant-image="https://images.unsplash.com/photo-1614594975525-e45190c55d0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
                          data-plant-care="Requiere luz indirecta brillante y riego moderado, dejando secar la capa superior del sustrato entre riegos. Humedad ambiental alta es beneficiosa. Fertilizar durante la primavera y verano." 
                          data-watering-days="7" 
                          data-watering-progress="3">
@@ -953,7 +1004,7 @@
                              alt="Planta Monstera Deliciosa con hojas grandes y verdes." 
                              class="w-full h-48 object-cover"
                              loading="lazy"
-                             onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/chesterchasis/ns/refs/heads/main/bosque_monstera.png';">
+                             onerror="this.onerror=null;this.src='https://placehold.co/500x300/e0e0e0/757575?text=Monstera';">
                         <div class="p-4">
                             <h3 class="font-semibold text-lg">Monstera</h3>
                             <p class="text-sm text-gray-600 dark:text-gray-400">Crecimiento y prosperidad</p>
@@ -964,7 +1015,7 @@
                          data-plant-image="https://placehold.co/800x600/FF6347/FFFFFF?text=Tomate+Cherry" data-plant-care="Requiere pleno sol (6-8 horas diarias). Riego regular, manteniendo el sustrato húmedo pero no encharcado. Necesita tutores para crecer. Fertilizar cada 2-3 semanas." 
                          data-watering-days="2" 
                          data-watering-progress="1">
-                        <img src="https://raw.githubusercontent.com/chesterchasis/ns/refs/heads/main/cherrys.jpg" 
+                        <img src="https://placehold.co/500x300/FF6347/FFFFFF?text=Tomate+Cherry" 
                              alt="Planta de Tomate Cherry con frutos rojos." 
                              class="w-full h-48 object-cover"
                              loading="lazy"
@@ -1102,7 +1153,7 @@
             </section>
 
             <section id="expenseTrackerSection" class="content-section px-4 hidden">
-                <h2 class="section-title text-5xl md:text-7xl mb-8 md:mb-12 text-center">Gastos</h2>
+                <h2 class="section-title text-5xl md:text-7xl mb-8 md:mb-12 text-center">Control de Gastos</h2>
                 <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg text-center">
                     <p class="text-gray-700 dark:text-gray-300 text-lg">Aquí se mostrará la herramienta de control de gastos.</p>
                      <img src="https://placehold.co/600x400/E8F5E9/FFD700?text=Control+de+Gastos+Pr%C3%B3ximamente" alt="Marcador de posición para la herramienta de control de gastos" class="mx-auto mt-6 rounded-lg">
@@ -1154,6 +1205,7 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
+                     <h2 class="text-2xl font-semibold">Nuestro Espacio</h2>
                     <p class="mt-2 text-gray-600 dark:text-gray-400">Cultivando amor y organización juntos</p>
                 </div>
                 
@@ -1202,7 +1254,7 @@
             'TD', 'TD', 'L', 'L'
         ]; 
 
-        const emojiOptions = ['❤️', '🎉', '💼', '✈️', '🇸🇰', '💡', '🇪🇸', '😴', '🏨', '🤔'];
+        const emojiOptions = ['❤️', '🎉', '💼', '✈️', '🍽️', '💡', '🎁', '😴', '😊', '🤔'];
         let currentEmojiSlotTarget = null; 
 
         const berlinHolidays2025 = [
@@ -1273,7 +1325,9 @@
         
         function setupCardHover() {
             document.querySelectorAll('.plant-card, .feature-card-bg').forEach(card => {
-                const img = card.querySelector('img');
+                const img = card.querySelector('img'); // For plant cards
+                const isFeatureCard = card.classList.contains('feature-card-bg');
+                
                 card.addEventListener('mouseenter', () => {
                     if (img && card.classList.contains('plant-card')) { 
                         gsap.to(img, { scale: 1.05, duration: 0.6, ease: "power2.out" });
@@ -1282,7 +1336,7 @@
                         gsap.to(card, { 
                             y: card.classList.contains('plant-card') ? -10 : -8, 
                             rotation: card.classList.contains('plant-card') ? 1 : 0,
-                            scale: card.classList.contains('plant-card') ? 1 : 1.03,
+                            scale: card.classList.contains('plant-card') ? 1 : (isFeatureCard ? 1.01 : 1.03), // Slightly less scale for feature cards with bg
                             boxShadow: body.classList.contains('dark-mode') ? 
                                 (card.classList.contains('plant-card') ? "0 10px 20px rgba(0,0,0,0.25)" : "0 12px 24px rgba(0,0,0,0.3)") :
                                 (card.classList.contains('plant-card') ? "0 10px 20px rgba(0,0,0,0.15)" : "0 12px 24px rgba(0,0,0,0.15)"),
@@ -1502,7 +1556,7 @@
             }
 
             for (let day = 1; day <= daysInMonth; day++) {
-                const dayCell = document.createElement('div'); // Outer cell container
+                const dayCell = document.createElement('div'); 
                 dayCell.classList.add('calendar-day-cell', 'rounded-md', 'p-1', 'sm:p-1.5');
                 
                 const currentDateForLogic = new Date(year, month, day);
@@ -1570,7 +1624,6 @@
 
                 // console.log(`[CalRender] Día: ${currentDateStr}, Hoy: ${isToday}, Festivo: ${isHoliday}, FinSemana: ${dayOfWeek === 0 || dayOfWeek === 6}`);
 
-                // Aplicar clases de estado a dayContentWrapper
                 if (isToday) {
                     dayContentWrapper.classList.add('current-day');
                     dayContentWrapper.classList.remove('holiday-berlin-light', 'holiday-berlin-dark', 'weekend-light', 'weekend-dark');
@@ -1585,7 +1638,6 @@
                     // console.log(`[CalRender] Aplicada '${weekendClass}' a ${currentDateStr} (dayContentWrapper)`);
                 }
 
-                // Aplicar clases de hover a dayCell (el contenedor exterior)
                 if (!(dayContentWrapper.classList.contains('current-day') || 
                       dayContentWrapper.classList.contains('holiday-berlin-light') || 
                       dayContentWrapper.classList.contains('holiday-berlin-dark') || 
