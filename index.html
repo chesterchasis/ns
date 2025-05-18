@@ -7,6 +7,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+
     <style>
         :root {
             --font-title: 'Playfair Display', serif;
@@ -15,9 +19,9 @@
             /* --- Colores Base (Tema Oscuro Único) --- */
             --color-black: #000000;
             --color-white: #FFFFFF;
-            --color-gray-light: #f9fafb; /* Usado para algunos elementos claros sobre fondo oscuro */
-            --color-gray-medium: #9ca3af; /* Texto secundario */
-            --color-gray-dark: #1f2937;   /* Usado para algunos fondos de input o elementos sutilmente más claros que el negro */
+            --color-gray-light: #f9fafb; 
+            --color-gray-medium: #9ca3af; 
+            --color-gray-dark: #1f2937;  
             --color-gray-darker: #111827;
             --color-yellow-accent: #FFD700; 
             --color-holiday: #2C5E55;  
@@ -32,7 +36,7 @@
             --icon-bg: var(--color-white); 
             --icon-color: var(--color-black); 
             --accent-color: var(--color-yellow-accent);
-            --bg-rgb-values: 0,0,0; /* Negro, para rgba en degradado */
+            --bg-rgb-values: 0,0,0; 
             
             /* Navbar */
             --navbar-bg: rgba(0, 0, 0, 0.85); 
@@ -259,6 +263,7 @@
             color: var(--icon-color);
             border-radius: 9999px; 
         }
+
         .calendar-grid div.calendar-day-cell { 
             border: 1px solid var(--card-border);
             aspect-ratio: 1 / 1; 
@@ -267,9 +272,21 @@
             justify-content: flex-start; 
             align-items: stretch; 
             position: relative; 
-            min-height: 6rem; 
+            min-height: 72px; 
             transition: background-color 0.2s;
             border-radius: 0.375rem; 
+            overflow: hidden; 
+        }
+
+        @media (min-width: 640px) { 
+            .calendar-grid div.calendar-day-cell {
+                min-height: 80px; 
+            }
+        }
+        @media (min-width: 768px) { 
+            .calendar-grid div.calendar-day-cell {
+                min-height: 96px; 
+            }
         }
 
         .calendar-day .day-header-info { 
@@ -277,53 +294,85 @@
             justify-content: space-between; 
             align-items: flex-start; 
             width: 100%;
-            padding: 0.125rem; 
-        }
-        .calendar-day .day-number {
-            font-size: 0.625rem; 
-            font-weight: 500;
-            order: 2; 
+            padding: 0.1rem; 
         }
         @media (min-width: 640px) { 
+            .calendar-day .day-header-info {
+                padding: 0.125rem; 
+            }
+        }
+
+        .calendar-day .day-number {
+            font-size: 0.6rem; 
+            font-weight: 500;
+            order: 2; 
+            line-height: 1; 
+        }
+        @media (min-width: 640px) { 
+            .calendar-day .day-number {
+                font-size: 0.7rem;
+            }
+        }
+         @media (min-width: 768px) { 
             .calendar-day .day-number {
                 font-size: 0.75rem; 
             }
         }
+
         .calendar-day .note-indicator {
-            width: 0.375rem; 
-            height: 0.375rem; 
+            width: 0.3rem; 
+            height: 0.3rem; 
             background-color: var(--accent-color);
             border-radius: 50%;
             opacity: 0; 
             transition: opacity 0.2s;
-            margin-top: 0.2rem; 
+            margin-top: 0.1rem; 
             order: 1; 
+            flex-shrink: 0; 
         }
         .calendar-day .note-indicator.has-note {
             opacity: 1;
         }
-
+        @media (min-width: 640px) { 
+            .calendar-day .note-indicator {
+                width: 0.375rem; 
+                height: 0.375rem;
+                margin-top: 0.2rem;
+            }
+        }
+        
         .calendar-day .day-emojis-container {
             display: flex;
             justify-content: space-around; 
-            font-size: 0.7rem; 
-            margin-bottom: 0.25rem; 
-            min-height: 1.1rem; 
+            align-items: center; 
+            font-size: 0.65rem; 
+            margin-bottom: 0.1rem; 
+            min-height: 1rem; 
+            flex-shrink: 0; 
+            padding: 0 0.1rem; 
         }
          @media (min-width: 640px) { 
             .calendar-day .day-emojis-container {
                 font-size: 0.75rem; 
-                min-height: 1.25rem;
+                min-height: 1.25rem; 
+                margin-bottom: 0.25rem; 
             }
         }
 
         .calendar-day .emoji-slot { 
-            width: 1.25rem; 
+            width: 1rem; 
             text-align: center;
             cursor: pointer; 
-            padding: 0.1rem; 
+            padding: 0.05rem; 
             border-radius: 0.25rem;
             user-select: none; 
+            line-height: 1; 
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .calendar-day .emoji-slot:hover {
+            background-color: rgba(255,255,255,0.1); 
         }
         @media (min-width: 640px) { 
             .calendar-day .emoji-slot {
@@ -331,37 +380,32 @@
                 padding: 0.125rem; 
             }
         }
-        .calendar-day .emoji-slot:hover {
-            background-color: rgba(255,255,255,0.1); 
-        }
-
 
         .calendar-day .day-notes-container {
             flex-grow: 1; 
             overflow-y: auto; 
-            max-height: calc(100% - 2.5rem); 
+            max-height: calc(100% - 2rem); 
+            padding: 0 0.1rem; 
         }
+        @media (min-width: 640px) { 
+            .calendar-day .day-notes-container {
+                max-height: calc(100% - 2.5rem); 
+            }
+        }
+
         .calendar-day .note-entry {
-            font-size: 0.55rem; 
-            line-height: 1.2; 
+            font-size: 0.5rem; 
+            line-height: 1.1; 
             color: var(--text-secondary);
             text-align: left;
             word-break: break-word; 
-            padding: 0.15rem; 
+            padding: 0.1rem; 
             border: 1px dashed transparent; 
             outline: none; 
             border-radius: 0.25rem;
             transition: border-color 0.2s, background-color 0.2s;
-            min-height: 1rem; 
-            margin-bottom: 0.15rem; 
-        }
-         @media (min-width: 640px) { 
-            .calendar-day .note-entry {
-                font-size: 0.6rem; 
-                padding: 0.2rem; 
-                min-height: 1.25rem; 
-                margin-bottom: 0.25rem; 
-            }
+            min-height: 0.8rem; 
+            margin-bottom: 0.1rem; 
         }
         .calendar-day .note-entry:last-child {
             margin-bottom: 0;
@@ -378,6 +422,16 @@
             border-color: var(--accent-color); 
             background-color: rgba(255,255,255,0.05); 
         }
+        @media (min-width: 640px) { 
+            .calendar-day .note-entry {
+                font-size: 0.6rem; 
+                line-height: 1.2; 
+                padding: 0.2rem; 
+                min-height: 1.25rem; 
+                margin-bottom: 0.25rem; 
+            }
+        }
+        
         .calendar-day.current-day .note-entry {
             color: var(--color-black) !important; 
             opacity: 0.9;
@@ -607,7 +661,6 @@
             transition: width 0.3s ease; 
         }
 
-        /* Hero Section Styles for Animation */
         #heroSection {
             min-height: calc(100vh - 4rem); 
             display: flex; 
@@ -619,7 +672,7 @@
             overflow: hidden; 
         }
 
-        #heroSection::before { /* Animated background image */
+        #heroSection::before { 
             content: "";
             position: absolute;
             inset: 0;
@@ -631,17 +684,17 @@
             transform: translateY(var(--hero-image-y)); 
         }
 
-        #heroSection::after { /* Animated radial gradient overlay for vignette effect */
+        #heroSection::after { 
             content: "";
             position: absolute;
             inset: 0;
             z-index: 2; 
             background: radial-gradient(ellipse at center, 
-                rgba(var(--bg-rgb-values), 0) 0%,    
-                rgba(var(--bg-rgb-values), 0) 20%,   
+                rgba(var(--bg-rgb-values), 0) 0%,  
+                rgba(var(--bg-rgb-values), 0) 20%,  
                 rgba(var(--bg-rgb-values), 0.6) 50%, 
-                rgba(var(--bg-rgb-values), 1) 75%,   
-                var(--bg-main) 85%                        
+                rgba(var(--bg-rgb-values), 1) 75%,  
+                var(--bg-main) 85%                  
             );
             opacity: var(--hero-image-opacity); 
             transform: translateY(var(--hero-image-y)); 
@@ -663,8 +716,6 @@
             text-shadow: 0 1px 5px rgba(0,0,0,0.7); 
         }
 
-
-        /* Styles for login modal and background blur */
         #loginModal.opacity-0 {
             opacity: 0;
         }
@@ -690,7 +741,8 @@
 
     </style>
 </head>
-<body class="min-h-screen relative"> <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 shadow-md">
+<body class="min-h-screen relative">
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex-shrink-0">
@@ -707,7 +759,7 @@
                 </div>
                 </div>
         </div>
-    </nav>
+        </nav>
 
     <div id="mainContentContainer" class="relative z-10 flex flex-col items-center px-4">
         <section id="heroSection" class="w-full relative rounded-2xl overflow-hidden">
@@ -922,26 +974,32 @@
                     </div>
                 </div>
                 <div id="plantDetailView" class="mt-12 md:mt-16 hidden">
-                    <div class="grid md:grid-cols-2 gap-8 items-stretch"> <div>
+                    <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                        <div>
                             <img id="detailPlantImage" src="https://placehold.co/600x800/e0e0e0/757575?text=Planta+Grande" alt="Imagen detallada de la planta seleccionada" class="w-full h-[50vh] sm:h-[60vh] md:h-[70vh] object-cover rounded-xl shadow-lg">
                         </div>
-                        <div class="space-y-4 plant-info-container flex flex-col justify-between"> <div> <h3 id="detailPlantName" class="text-4xl md:text-5xl font-semibold" style="font-family: var(--font-title);">Nombre de la Planta</h3>
+                        <div class="space-y-4 plant-info-container flex flex-col justify-between">
+                            <div>
+                                <h3 id="detailPlantName" class="text-4xl md:text-5xl font-semibold" style="font-family: var(--font-title);">Nombre de la Planta</h3>
                                 <div id="detailPlantCare" class="leading-relaxed mt-4 mb-4 text-sm"></div> 
                                 <div>
                                     <p class="text-sm font-medium mb-1">Próximo Riego:</p>
-                                    <div class="watering-progress-bg w-full h-8 overflow-hidden"> <div id="wateringProgressBar" class="h-full text-xs font-medium text-black p-0.5 leading-none" style="width: 0%;">
+                                    <div class="watering-progress-bg w-full h-8 overflow-hidden">
+                                        <div id="wateringProgressBar" class="h-full text-xs font-medium text-black p-0.5 leading-none" style="width: 0%;">
                                             <span id="wateringProgressText"></span>
                                         </div>
                                     </div>
                                     <p id="wateringTimeText" class="text-xs text-right mt-1"></p>
                                 </div>
                             </div>
-                            <button id="closePlantDetailBtn" class="mt-6 btn-primary font-semibold py-2 px-4 rounded-full text-sm self-start">Cerrar Detalles</button> </div>
+                            <button id="closePlantDetailBtn" class="mt-6 btn-primary font-semibold py-2 px-4 rounded-full text-sm self-start">Cerrar Detalles</button>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <section id="tasksSection" class="content-section px-4 hidden"> <h2 class="section-title text-5xl md:text-7xl mb-8 md:mb-12 text-center">To Do List</h2>
+            <section id="tasksSection" class="content-section px-4 hidden">
+                <h2 class="section-title text-5xl md:text-7xl mb-8 md:mb-12 text-center">To Do List</h2>
                 <div class="todo-container p-6 md:p-8">
                     <div class="flex mb-6">
                         <input type="text" id="newTaskInput" class="input-field flex-grow px-4 py-3 focus:outline-none text-base" placeholder="Añadir nueva tarea...">
@@ -959,37 +1017,39 @@
 
             <section id="expenseTrackerSection" class="content-section px-4 hidden">
                 <h2 class="section-title text-5xl md:text-7xl mb-8 md:mb-12 text-center">Gastos</h2>
-                <div class="bg-white p-8 rounded-xl shadow-lg text-center"> <p class="text-secondary text-lg">Aquí se mostrará la herramienta de control de gastos.</p>
-                     <img src="https://placehold.co/600x400/1f2937/FFD700?text=Control+de+Gastos+Pr%C3%B3ximamente" alt="Marcador de posición para la herramienta de control de gastos" class="mx-auto mt-6 rounded-lg"> </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+                    <p class="text-secondary text-lg">Aquí se mostrará la herramienta de control de gastos.</p>
+                    <img src="https://placehold.co/600x400/1f2937/FFD700?text=Control+de+Gastos+Pr%C3%B3ximamente" alt="Marcador de posición para la herramienta de control de gastos" class="mx-auto mt-6 rounded-lg">
+                </div>
             </section>
-        </div>
-    </div>
-    
-    <div id="loginModal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-70 hidden opacity-0"> 
-        <div class="login-form w-full max-w-md mx-4 p-8 relative overflow-hidden"> <div class="absolute -top-20 -right-20 w-40 h-40 bg-accent rounded-full opacity-10"></div>
+        </div> </div> <div id="loginModal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-70 hidden opacity-0"> 
+        <div class="login-form w-full max-w-md mx-4 p-8 relative overflow-hidden">
+            <div class="absolute -top-20 -right-20 w-40 h-40 bg-accent rounded-full opacity-10"></div>
             <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-yellow-500 rounded-full opacity-10"></div>
             
-            <button id="closeLogin" class="absolute top-4 right-4 text-gray-400 hover:text-accent"> <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <button id="closeLogin" class="absolute top-4 right-4 text-gray-400 hover:text-accent">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
             
             <h2 class="text-3xl font-semibold mb-6 text-center">Iniciar Sesión</h2>
             
-            <form class="space-y-6">
+            <form id="firebaseLoginForm" class="space-y-6">
                 <div>
                     <label for="email" class="block text-sm font-medium mb-1">Correo Electrónico</label>
-                    <input type="email" id="email" class="input-field w-full px-4 py-3 focus:outline-none transition-all" placeholder="tucorreo@ejemplo.com">
+                    <input type="email" id="email" name="email" class="input-field w-full px-4 py-3 focus:outline-none transition-all" placeholder="tucorreo@ejemplo.com" required>
                 </div>
                 
                 <div>
                     <label for="password" class="block text-sm font-medium mb-1">Contraseña</label>
-                    <input type="password" id="password" class="input-field w-full px-4 py-3 focus:outline-none transition-all" placeholder="••••••••">
+                    <input type="password" id="password" name="password" class="input-field w-full px-4 py-3 focus:outline-none transition-all" placeholder="••••••••" required>
                 </div>
                 
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
-                        <input id="remember-me" type="checkbox" class="h-4 w-4 text-accent focus:ring-accent border-gray-600 rounded"> <label for="remember-me" class="ml-2 block text-sm">Recuérdame</label>
+                        <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-accent focus:ring-accent border-gray-600 rounded">
+                        <label for="remember-me" class="ml-2 block text-sm">Recuérdame</label>
                     </div>
                     
                     <a href="#" class="text-sm text-accent hover:underline">¿Olvidaste tu contraseña?</a>
@@ -998,6 +1058,7 @@
                 <button type="submit" class="w-full btn-primary font-semibold py-3 px-4 rounded-full transition-all">
                     Iniciar Sesión
                 </button>
+                <div id="loginError" class="text-red-500 text-sm mt-2 text-center h-4"></div>
             </form>
         </div>
     </div>
@@ -1009,7 +1070,8 @@
                     <p class="mt-2 text-footer-text">Cultivando amor y organización juntos</p>
                 </div>
                 
-                <div class="flex space-x-6 mt-1 md:mt-0"> <a href="#" class="text-footer-text hover:text-footer-link-hover transition-colors" aria-label="Facebook">
+                <div class="flex space-x-6 mt-1 md:mt-0">
+                    <a href="#" class="text-footer-text hover:text-footer-link-hover transition-colors" aria-label="Facebook">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
                         </svg>
@@ -1027,7 +1089,8 @@
                 </div>
             </div>
             
-            <div class="mt-6 pt-6 border-t border-footer-border text-center text-sx text-footer-text"> <p>© 2025 Nuestro Espacio. By Chesterchasis.</p>
+            <div class="mt-6 pt-6 border-t border-footer-border text-center text-sx text-footer-text">
+                <p>© 2025 Nuestro Espacio. By Chesterchasis.</p>
             </div>
         </div>
     </footer>
@@ -1038,29 +1101,41 @@
     <script>
         // Constantes globales y referencias a elementos del DOM
         const body = document.body;
-        // Las constantes darkModeToggleNav, sunIconNav, moonIconNav han sido eliminadas.
-
-        // Variables para el calendario
         let monthYearDisplay, calendarGrid, prevMonthBtn, nextMonthBtn, currentDateCal;
         let calendarNotes = {}; 
-
         const workSequenceStartDate = new Date(2025, 0, 3); 
         const workSequencePattern = [
-            'TD', 'TD', 'TD', 'L', 'L', 
-            'TD', 'TD', 'L', 'L', 'L', 
-            'TN', 'TN', 'L', 'L', 
-            'TN', 'TN', 'TN', 'L', 'L', 
-            'TN', 'TN', 'L', 'L', 'L', 
-            'TD', 'TD', 'L', 'L'
+            'TD', 'TD', 'TD', 'L', 'L', 'TD', 'TD', 'L', 'L', 'L', 
+            'TN', 'TN', 'L', 'L', 'TN', 'TN', 'TN', 'L', 'L', 
+            'TN', 'TN', 'L', 'L', 'L', 'TD', 'TD', 'L', 'L'
         ]; 
-
         const emojiOptions = ['❤️', '🎉', '💼', '✈️', '🍽️', '💡', '?', '😴', '😊', '🤔'];
         let currentEmojiSlotTarget = null; 
-
         const berlinHolidays2025 = [
             "2025-01-01", "2025-03-08", "2025-04-18", "2025-04-21", "2025-05-01", 
             "2025-05-08", "2025-05-29", "2025-06-09", "2025-10-03", "2025-12-25", "2025-12-26"
         ];
+
+        // --- START: Firebase Configuration ---
+        // IMPORTANTE: Reemplaza estas variables con tu configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyD0zentUNqgouFTVD3i3wKLruRQkgMZt_Y",
+            authDomain: "calentonqui.firebaseapp.com",
+            databaseURL: "https://calentonqui-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "calentonqui",
+            storageBucket: "calentonqui.firebasestorage.app",
+            messagingSenderId: "386155002525",
+            appId: "1:386155002525:web:75a074d782f07e285a7274"
+        };
+
+        // Inicializar Firebase
+        if (typeof firebase !== 'undefined' && !firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const auth = typeof firebase !== 'undefined' ? firebase.auth() : null;
+        // --- END: Firebase Configuration ---
+
+        let heroAnimationCompleted = false; // Flag to track hero animation state
 
         function getWorkEmojiForDate(date) {
             const targetDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
@@ -1084,9 +1159,7 @@
         function saveCalendarNotes() {
             localStorage.setItem('calendarNotes', JSON.stringify(calendarNotes));
         }
-
-        // La función setDarkMode ha sido eliminada.
-
+        
         function toggleBackgroundBlur(shouldBlur) {
             const elementsToBlur = [
                 document.getElementById('navbar'),
@@ -1100,26 +1173,41 @@
             });
         }
         
-        function startHeroAnimation() {
+        function startHeroAnimation(onCompleteCallback) {
             const initialContent = document.getElementById('initialHeroContent');
             const heroSection = document.getElementById('heroSection');
             const animatedText = document.getElementById('animatedHeroText');
 
             if (!initialContent || !heroSection || !animatedText) {
-                console.error("Elementos para la animación de hero no encontrados.");
+                if(typeof onCompleteCallback === 'function') onCompleteCallback();
+                return;
+            }
+
+            if (getComputedStyle(initialContent).display === 'none' || heroAnimationCompleted) {
+                gsap.set(initialContent, { display: 'none', opacity: 0 });
+                gsap.set(heroSection, { '--hero-image-opacity': '1', '--hero-image-y': '20px' });
+                gsap.to(animatedText, { opacity: 1, y: -200, duration: 0.5, ease: "power2.inOut", onComplete: () => {
+                    heroAnimationCompleted = true;
+                    if(typeof onCompleteCallback === 'function') onCompleteCallback();
+                }});
                 return;
             }
 
             gsap.to(initialContent, { 
                 opacity: 0, 
                 duration: 0.3, 
-                onComplete: () => { initialContent.style.display = 'none'; }
+                onComplete: () => { 
+                    initialContent.style.display = 'none'; 
+                }
             });
 
             gsap.set(animatedText, { opacity: 0, y: 50 }); 
-
-            const tl = gsap.timeline(); 
-
+            const tl = gsap.timeline({ 
+                onComplete: () => {
+                    heroAnimationCompleted = true;
+                    if(typeof onCompleteCallback === 'function') onCompleteCallback();
+                }
+            }); 
             tl.to(heroSection, { 
                 '--hero-image-opacity': '1', 
                 duration: 1.0, 
@@ -1132,7 +1220,7 @@
                 ease: "circ.out"
             }, "<0.3") 
             .to(heroSection, {
-                '--hero-image-y': '20px', // Reducido para que la imagen no baje tanto
+                '--hero-image-y': '20px',
                 duration: 1.6, 
                 ease: "power2.inOut"
             }, ">-0.2") 
@@ -1147,15 +1235,17 @@
             const loginBtn = document.getElementById('loginBtn'); 
             const closeLogin = document.getElementById('closeLogin');
             const loginModal = document.getElementById('loginModal');
-            const loginForm = loginModal ? loginModal.querySelector('.login-form') : null;
+            const loginFormElement = document.getElementById('firebaseLoginForm'); // Changed ID
+            const loginErrorDiv = document.getElementById('loginError');
 
-            if (loginBtn && loginModal && closeLogin && loginForm) {
+            if (loginBtn && loginModal && closeLogin && loginFormElement) {
                 const openModal = () => {
                     loginModal.classList.remove('hidden');
-                    loginForm.classList.remove('scale-up'); 
+                    loginFormElement.classList.remove('scale-up'); 
+                    if (loginErrorDiv) loginErrorDiv.textContent = ''; // Clear previous errors
                     setTimeout(() => { 
                         loginModal.classList.remove('opacity-0');
-                        loginForm.classList.add('scale-up'); 
+                        loginFormElement.classList.add('scale-up'); 
                     }, 10); 
                     document.body.style.overflow = 'hidden'; 
                     toggleBackgroundBlur(true); 
@@ -1163,26 +1253,68 @@
 
                 const closeModal = () => {
                     loginModal.classList.add('opacity-0');
-                    loginForm.classList.remove('scale-up');
+                    loginFormElement.classList.remove('scale-up');
                     setTimeout(() => {
                         loginModal.classList.add('hidden');
                         document.body.style.overflow = ''; 
                     }, 500); 
                     toggleBackgroundBlur(false); 
-                    startHeroAnimation(); 
+                    // Call startHeroAnimation IF the initial content was not the one displayed before modal.
+                    // Or simply ensure the hero is in its final animated state.
+                    if (!heroAnimationCompleted) { // Only run full animation if it wasn't completed
+                        startHeroAnimation();
+                    } else { // Otherwise, just ensure final state (e.g. if modal was opened via button after initial load)
+                         const animatedText = document.getElementById('animatedHeroText');
+                         const heroSection = document.getElementById('heroSection');
+                         gsap.set(heroSection, { '--hero-image-opacity': '1', '--hero-image-y': '20px' });
+                         gsap.to(animatedText, { opacity: 1, y: -200, duration: 0.5, ease: "power2.inOut" });
+                    }
                 };
 
-                loginBtn.addEventListener('click', openModal);
+                loginBtn.addEventListener('click', () => {
+                    // When login button is clicked, ensure hero is in animated state before opening modal
+                    if (!heroAnimationCompleted) {
+                        startHeroAnimation(openModal);
+                    } else {
+                        openModal();
+                    }
+                });
                 closeLogin.addEventListener('click', closeModal);
                 
-                const loginSubmitButton = loginForm.querySelector('button[type="submit"]');
-                if (loginSubmitButton) {
-                    loginForm.addEventListener('submit', (e) => {
-                        e.preventDefault(); 
-                        console.log("Formulario de inicio de sesión enviado (simulado)");
-                        closeModal(); 
-                    });
-                }
+                loginFormElement.addEventListener('submit', (e) => {
+                    e.preventDefault(); 
+                    if (!auth) {
+                        if (loginErrorDiv) loginErrorDiv.textContent = "Firebase no está inicializado.";
+                        return;
+                    }
+                    const email = loginFormElement.email.value;
+                    const password = loginFormElement.password.value;
+                    if (loginErrorDiv) loginErrorDiv.textContent = ''; // Clear previous errors
+
+                    auth.signInWithEmailAndPassword(email, password)
+                        .then((userCredential) => {
+                            // Signed in 
+                            var user = userCredential.user;
+                            console.log("Usuario inició sesión:", user.email);
+                            closeModal(); 
+                            // Aquí puedes redirigir o actualizar la UI para el estado de "logueado"
+                        })
+                        .catch((error) => {
+                            var errorCode = error.code;
+                            var errorMessage = error.message;
+                            console.error("Error de inicio de sesión:", errorCode, errorMessage);
+                            if (loginErrorDiv) {
+                                if (errorCode === 'auth/wrong-password' || errorCode === 'auth/user-not-found' || errorCode === 'auth/invalid-credential') {
+                                    loginErrorDiv.textContent = "Correo o contraseña incorrectos.";
+                                } else if (errorCode === 'auth/invalid-email') {
+                                    loginErrorDiv.textContent = "El formato del correo es inválido.";
+                                }
+                                 else {
+                                    loginErrorDiv.textContent = "Error al iniciar sesión. Inténtalo de nuevo.";
+                                }
+                            }
+                        });
+                });
 
                 return { open: openModal, close: closeModal }; 
             }
@@ -1230,7 +1362,6 @@
         function showEmojiPalette(targetSlot) {
             const palette = document.getElementById('emojiPalette');
             palette.innerHTML = ''; 
-
             emojiOptions.forEach(emoji => {
                 const emojiDiv = document.createElement('div');
                 emojiDiv.classList.add('palette-emoji');
@@ -1241,7 +1372,6 @@
                 });
                 palette.appendChild(emojiDiv);
             });
-
             const closeButton = document.createElement('button');
             closeButton.id = 'emojiPaletteCloseBtn';
             closeButton.textContent = '✕ Cerrar'; 
@@ -1251,14 +1381,11 @@
                 currentEmojiSlotTarget = null;
             });
             palette.appendChild(closeButton);
-
             const rect = targetSlot.getBoundingClientRect();
             palette.style.top = `${rect.bottom + window.scrollY + 5}px`;
             let leftPosition = rect.left + window.scrollX;
-            
             const wasHidden = palette.style.display === 'none'; 
             if (wasHidden) palette.style.display = 'grid'; 
-
             if (palette.offsetWidth > 0 && (leftPosition + palette.offsetWidth > window.innerWidth -10)) { 
                 leftPosition = window.innerWidth - palette.offsetWidth - 10; 
             }
@@ -1275,7 +1402,6 @@
             targetSlot.textContent = selectedEmoji;
             const dateStr = targetSlot.dataset.date;
             const slotIndex = parseInt(targetSlot.dataset.slot, 10) -1; 
-
             if (!calendarNotes[dateStr]) { 
                 const workEmoji = getWorkEmojiForDate(new Date(dateStr + "T00:00:00")); 
                 calendarNotes[dateStr] = { emojis: ['🏠', workEmoji || ''], notes: [] };
@@ -1285,7 +1411,6 @@
             }
             calendarNotes[dateStr].emojis[slotIndex] = selectedEmoji;
             saveCalendarNotes();
-            
             const palette = document.getElementById('emojiPalette');
             palette.style.display = 'none'; 
             currentEmojiSlotTarget = null;
@@ -1310,11 +1435,9 @@
             noteDiv.setAttribute('data-date', dateStr);
             noteDiv.setAttribute('data-note-index', index);
             noteDiv.textContent = text;
-
             if (isPlaceholder) {
                 noteDiv.classList.add('placeholder-note');
             }
-
             noteDiv.addEventListener('input', (event) => {
                 if (event.target.textContent.length > 40) { 
                     event.target.textContent = event.target.textContent.substring(0, 40);
@@ -1328,14 +1451,12 @@
                     }
                 }
             });
-
             noteDiv.addEventListener('keydown', (event) => {
                 if (event.key === 'Enter') {
                     event.preventDefault(); 
                     handleNoteEnter(event.target, dateStr, index, dayCellElement);
                 }
             });
-
             noteDiv.addEventListener('blur', (event) => {
                 handleNoteBlur(event.target, dateStr, index, dayCellElement);
             });
@@ -1346,7 +1467,6 @@
             const currentText = noteElement.textContent.trim();
             const dayData = calendarNotes[dateStr] || { emojis: ['🏠', ''], notes: [] };
             if (!Array.isArray(dayData.notes)) dayData.notes = []; 
-
             if (noteIndex < dayData.notes.length) { 
                 dayData.notes[noteIndex] = currentText;
             } else if (currentText && dayData.notes.length < 2) { 
@@ -1358,7 +1478,6 @@
             calendarNotes[dateStr] = dayData;
             saveCalendarNotes();
             renderNotesForDay(dayCellElement, dateStr); 
-
             if (currentText && dayData.notes.length < 2) {
                 const notesContainer = dayCellElement.querySelector('.day-notes-container');
                 const newPlaceholder = notesContainer ? notesContainer.querySelector('.note-entry.placeholder-note') : null;
@@ -1413,22 +1532,18 @@
             const daysInMonth = new Date(year, month + 1, 0).getDate();
             const daysInPrevMonth = new Date(year, month, 0).getDate();
             const today = new Date();
-
             for (let i = 0; i < firstDayOfMonth; i++) {
                 const dayCell = document.createElement('div');
-                dayCell.classList.add('calendar-day-cell', 'other-month', 'rounded-md', 'p-1', 'sm:p-1.5'); 
+                dayCell.className = 'calendar-day-cell other-month rounded-md p-1 sm:p-1.5'; 
                 dayCell.innerHTML = `<div class="calendar-day flex flex-col h-full"><div class="day-header-info"><div class="note-indicator"></div><span class="day-number">${daysInPrevMonth - firstDayOfMonth + 1 + i}</span></div><div class="day-emojis-container"><span class="emoji-slot"></span><span class="emoji-slot"></span></div><div class="day-notes-container flex-grow"></div></div>`;
                 calendarGrid.appendChild(dayCell);
             }
-
             for (let day = 1; day <= daysInMonth; day++) {
                 const dayCell = document.createElement('div'); 
-                dayCell.classList.add('calendar-day-cell', 'rounded-md', 'p-1', 'sm:p-1.5');
-                
+                dayCell.className = 'calendar-day-cell rounded-md p-1 sm:p-1.5';
                 const currentDateForLogic = new Date(year, month, day);
                 const currentDateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
                 const workEmojiFromSequence = getWorkEmojiForDate(currentDateForLogic);
-
                 if (!calendarNotes[currentDateStr]) {
                     calendarNotes[currentDateStr] = { emojis: ['🏠', workEmojiFromSequence || ''], notes: [] };
                 } else {
@@ -1444,73 +1559,64 @@
                     }
                 }
                 const dayData = calendarNotes[currentDateStr];
-
                 const dayContentWrapper = document.createElement('div'); 
-                dayContentWrapper.classList.add('calendar-day', 'flex', 'flex-col', 'h-full');
+                dayContentWrapper.className = 'calendar-day flex flex-col h-full'; 
                 dayCell.appendChild(dayContentWrapper);
-
                 const dayHeaderInfo = document.createElement('div');
-                dayHeaderInfo.classList.add('day-header-info');
+                dayHeaderInfo.className = 'day-header-info'; 
                 const noteIndicator = document.createElement('div');
-                noteIndicator.classList.add('note-indicator');
+                noteIndicator.className = 'note-indicator'; 
                 const dayNumberSpan = document.createElement('span');
-                dayNumberSpan.classList.add('day-number');
+                dayNumberSpan.className = 'day-number'; 
                 dayNumberSpan.textContent = day;
                 dayHeaderInfo.appendChild(noteIndicator); 
                 dayHeaderInfo.appendChild(dayNumberSpan);  
                 dayContentWrapper.appendChild(dayHeaderInfo);
-
                 const emojisContainer = document.createElement('div');
-                emojisContainer.classList.add('day-emojis-container');
+                emojisContainer.className = 'day-emojis-container'; 
                 const emojiSlot1 = document.createElement('span');
-                emojiSlot1.classList.add('emoji-slot');
+                emojiSlot1.className = 'emoji-slot'; 
                 emojiSlot1.setAttribute('data-date', currentDateStr);
                 emojiSlot1.setAttribute('data-slot', '1');
                 emojiSlot1.textContent = dayData.emojis[0] || '🏠'; 
                 emojiSlot1.addEventListener('click', (e) => { e.stopPropagation(); showEmojiPalette(emojiSlot1); });
                 emojisContainer.appendChild(emojiSlot1);
                 const emojiSlot2 = document.createElement('span');
-                emojiSlot2.classList.add('emoji-slot');
+                emojiSlot2.className = 'emoji-slot'; 
                 emojiSlot2.setAttribute('data-date', currentDateStr);
                 emojiSlot2.setAttribute('data-slot', '2');
                 emojiSlot2.textContent = dayData.emojis[1] || ''; 
                 emojiSlot2.addEventListener('click', (e) => { e.stopPropagation(); showEmojiPalette(emojiSlot2); });
                 emojisContainer.appendChild(emojiSlot2);
                 dayContentWrapper.appendChild(emojisContainer);
-                
                 const notesContainerDiv = document.createElement('div');
-                notesContainerDiv.classList.add('day-notes-container');
+                notesContainerDiv.className = 'day-notes-container'; 
                 dayContentWrapper.appendChild(notesContainerDiv);
-                
                 renderNotesForDay(dayCell, currentDateStr); 
-
                 const dayOfWeek = currentDateForLogic.getDay(); 
                 const isHoliday = berlinHolidays2025.includes(currentDateStr);
                 const isToday = day === today.getDate() && month === today.getMonth() && year === today.getFullYear();
-
                 if (isToday) {
                     dayContentWrapper.classList.add('current-day');
-                    dayContentWrapper.classList.remove('holiday-berlin', 'weekend');
+                    dayContentWrapper.classList.remove('holiday-berlin', 'weekend'); 
                 } else if (isHoliday) {
                     dayContentWrapper.classList.add('holiday-berlin');
                 } else if (dayOfWeek === 0 || dayOfWeek === 6) { 
                     dayContentWrapper.classList.add('weekend');
                 }
-
                 if (!(dayContentWrapper.classList.contains('current-day') || 
                       dayContentWrapper.classList.contains('holiday-berlin') ||
                       dayContentWrapper.classList.contains('weekend'))) {
-                    dayCell.classList.add('cursor-pointer', 'hover:bg-gray-700'); // Hover para modo oscuro
+                    dayCell.classList.add('cursor-pointer', 'hover:bg-gray-700'); 
                 }
                 calendarGrid.appendChild(dayCell);
             }
             saveCalendarNotes(); 
-
             const totalCells = firstDayOfMonth + daysInMonth;
             const remainingCells = (7 - (totalCells % 7)) % 7; 
             for (let i = 1; i <= remainingCells; i++) {
                 const dayCell = document.createElement('div');
-                dayCell.classList.add('calendar-day-cell', 'other-month', 'rounded-md', 'p-1', 'sm:p-1.5');
+                dayCell.className = 'calendar-day-cell other-month rounded-md p-1 sm:p-1.5';
                 dayCell.innerHTML = `<div class="calendar-day flex flex-col h-full"><div class="day-header-info"><div class="note-indicator"></div><span class="day-number">${i}</span></div><div class="day-emojis-container"><span class="emoji-slot"></span><span class="emoji-slot"></span></div><div class="day-notes-container flex-grow"></div></div>`;
                 calendarGrid.appendChild(dayCell);
             }
@@ -1537,7 +1643,6 @@
                 const li = document.createElement('li');
                 const mainContentWrapper = document.createElement('div');
                 mainContentWrapper.classList.add('flex', 'items-center', 'flex-grow');
-
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
                 checkbox.checked = task.completed;
@@ -1549,10 +1654,8 @@
                     renderTasks(); 
                 });
                 mainContentWrapper.appendChild(checkbox);
-
                 const taskItemContent = document.createElement('div');
                 taskItemContent.classList.add('task-item-content'); 
-
                 const taskTextLabel = document.createElement('label');
                 taskTextLabel.textContent = task.text;
                 taskTextLabel.htmlFor = `task-${index}`; 
@@ -1560,7 +1663,6 @@
                     taskTextLabel.classList.add('completed');
                 }
                 taskItemContent.appendChild(taskTextLabel);
-
                 if (task.dateAdded) {
                     const dateSpan = document.createElement('span');
                     dateSpan.classList.add('task-date', 'block'); 
@@ -1569,7 +1671,6 @@
                 }
                 mainContentWrapper.appendChild(taskItemContent);
                 li.appendChild(mainContentWrapper);
-
                 const deleteBtn = document.createElement('button');
                 deleteBtn.classList.add('delete-task', 'ml-auto', 'flex-shrink-0'); 
                 deleteBtn.title = 'Eliminar tarea';
@@ -1599,7 +1700,6 @@
             detailPlantImage.src = plantData.image;
             detailPlantImage.onerror = () => { detailPlantImage.src = `https://placehold.co/600x800/e0e0e0/757575?text=${encodeURIComponent(plantData.name)}`; }; 
             detailPlantName.textContent = plantData.name;
-            
             const careInstructions = plantData.care.split('. ').filter(instr => instr.trim() !== '');
             let careHtml = '<ul class="list-disc list-inside space-y-1 text-sm">'; 
             careInstructions.forEach(instr => {
@@ -1607,16 +1707,13 @@
             });
             careHtml += '</ul>';
             detailPlantCare.innerHTML = careHtml;
-
             const progress = (parseInt(plantData.progress) / parseInt(plantData.days)) * 100;
             wateringProgressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`; 
             wateringProgressText.textContent = `${plantData.progress} de ${plantData.days} días`;
             const daysLeft = parseInt(plantData.days) - parseInt(plantData.progress);
             wateringTimeText.textContent = daysLeft > 0 ? `Próximo riego en ${daysLeft} día(s)` : 'Regar hoy';
-
             if(plantCardGrid) plantCardGrid.classList.add('hidden'); 
             plantDetailView.classList.remove('hidden'); 
-
             const navbarHeight = document.getElementById('navbar').offsetHeight;
             const elementPosition = plantDetailView.getBoundingClientRect().top + window.pageYOffset;
             const offsetPosition = elementPosition - navbarHeight - 20; 
@@ -1670,7 +1767,7 @@
                             y: isActive ? -6 : 0, 
                             scale: isActive ? 1.02 : 1, 
                             rotation: 0, 
-                            boxShadow: isActive ? "0 12px 24px rgba(0,0,0,0.3)" : "0 4px 8px rgba(0,0,0,0.3)", // Sombras para modo oscuro
+                            boxShadow: isActive ? "0 12px 24px rgba(0,0,0,0.3)" : "0 4px 8px rgba(0,0,0,0.3)", 
                             duration: 0.4, 
                             ease: "power1.out" 
                         });
@@ -1683,7 +1780,6 @@
                     if (section) {
                         const isHeroOrFeatures = section.id === 'heroSection' || section.id === 'featuresSection';
                         const isTargetSection = section.id === sectionId;
-                        
                         const initialHeroContent = document.getElementById('initialHeroContent');
                         if (section.id === 'heroSection' && initialHeroContent && initialHeroContent.style.display === 'none') {
                            section.classList.remove('hidden'); 
@@ -1693,7 +1789,7 @@
                         } else if (sectionId === 'heroSection') { 
                              section.classList.toggle('hidden', !isHeroOrFeatures); 
                              if (contentSections.featuresSection) { 
-                                contentSections.featuresSection.classList.remove('hidden');
+                                 contentSections.featuresSection.classList.remove('hidden');
                              }
                         } else { 
                              section.classList.toggle('hidden', !(isTargetSection || section.id === 'featuresSection'));
@@ -1703,14 +1799,12 @@
                         }
                     }
                 });
-
                 if(plantDetailView && sectionId !== 'gardenSection') plantDetailView.classList.add('hidden');
                 if(plantCardGrid) {
                     plantCardGrid.classList.toggle('hidden', 
                         !(sectionId === 'gardenSection' && (!plantDetailView || plantDetailView.classList.contains('hidden')))
                     );
                 }
-                
                 const sectionToShow = contentSections[sectionId];
                 if (sectionToShow) {
                     const navbarHeight = document.getElementById('navbar').offsetHeight;
@@ -1718,7 +1812,6 @@
                                          0 : 
                                          (sectionId === 'heroSection' ? 0 : sectionToShow.offsetTop - navbarHeight); 
                     window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-
                     if (sectionId === 'calendarSection' && typeof renderCalendar === "function") renderCalendar();
                     if (sectionId === 'tasksSection' && typeof renderTasks === "function") renderTasks(); 
                 }
@@ -1757,9 +1850,7 @@
             prevMonthBtn = document.getElementById('prevMonthBtn');
             nextMonthBtn = document.getElementById('nextMonthBtn');
             currentDateCal = new Date(); 
-
             loadCalendarNotes(); 
-            // La llamada a setDarkMode y la carga de localStorage para darkMode han sido eliminadas.
             
             if (monthYearDisplay && document.getElementById('calendarSection') && !document.getElementById('calendarSection').classList.contains('hidden')) {
                  renderCalendar(); 
@@ -1779,17 +1870,23 @@
                     });
                 }
             }
-
-            setTimeout(() => {
-                if (modalControls && typeof modalControls.open === 'function') {
-                    const initialHeroContent = document.getElementById('initialHeroContent');
-                    if (initialHeroContent && getComputedStyle(initialHeroContent).display !== 'none') {
-                       modalControls.open();
+            
+            const initialHeroContent = document.getElementById('initialHeroContent');
+            if (initialHeroContent && getComputedStyle(initialHeroContent).display !== 'none' && !heroAnimationCompleted) {
+                setTimeout(() => { 
+                    if (modalControls && typeof modalControls.open === 'function') {
+                        startHeroAnimation(() => { // Pass openModal as a callback
+                            modalControls.open();
+                        });
                     }
-                }
-            }, 100); 
+                }, 100); 
+            } else if (heroAnimationCompleted) {
+                // If animation already completed, and we still need to open modal (e.g. user not logged in)
+                // This part might need more sophisticated logic based on auth state later.
+                // For now, if initialHeroContent is hidden, we assume modal auto-open is not needed
+                // unless explicitly triggered by other conditions (not covered in this request).
+            }
 
-            // El event listener para darkModeToggleNav ha sido eliminado.
             if(prevMonthBtn) {
                 prevMonthBtn.addEventListener('click', () => {
                     currentDateCal.setMonth(currentDateCal.getMonth() - 1);
@@ -1825,7 +1922,7 @@
                 emojiPalette.classList.remove('initially-hidden'); 
             }
             
-            const initialHeroContent = document.getElementById('initialHeroContent');
+            // Ensure correct initial section visibility
             if (initialHeroContent && getComputedStyle(initialHeroContent).display === 'none') {
                 if(document.getElementById('heroSection')) document.getElementById('heroSection').classList.remove('hidden');
                 if(document.getElementById('featuresSection')) document.getElementById('featuresSection').classList.remove('hidden');
